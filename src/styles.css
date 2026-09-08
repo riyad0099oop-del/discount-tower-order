@@ -1,0 +1,150 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Discount Tower Pizza — brand design system.
+ * Warm brown / olive / gold on cream. Light-first.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cairo", "Tajawal", ui-sans-serif, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-cream: var(--cream);
+  --color-surface: var(--surface);
+  --color-olive: var(--olive);
+  --color-olive-foreground: var(--olive-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-cocoa: var(--cocoa);
+  --color-cocoa-foreground: var(--cocoa-foreground);
+  --shadow-soft: 0 1px 2px oklch(0.3 0.05 55 / 0.05), 0 8px 24px oklch(0.3 0.05 55 / 0.06);
+  --shadow-lift: 0 2px 4px oklch(0.3 0.05 55 / 0.06), 0 18px 40px oklch(0.3 0.05 55 / 0.1);
+}
+
+:root {
+  --radius: 1rem;
+  /* Distinct Warm Beige for the entire site */
+  --background: #F4EBE1;
+  --foreground: oklch(0.28 0.04 45); /* Espresso Brown */
+  
+  --cream: #EADDCD; /* Slightly deeper beige if needed */
+  --surface: #F4EBE1;
+  
+  /* Cards remain slightly distinct or the same, pure white can pop nicely, but let's make them #FFFFFF for contrast or keep them slightly warm */
+  --card: #FFFFFF;
+  --card-foreground: oklch(0.28 0.04 45);
+  
+  --popover: #FFFFFF;
+  --popover-foreground: oklch(0.28 0.04 45);
+  
+  /* Burnt Orange for primary actions, prices, offers */
+  --primary: oklch(0.6 0.16 45);
+  --primary-foreground: #FFFFFF;
+  
+  /* Olive Green as secondary helper */
+  --secondary: oklch(0.48 0.1 125);
+  --secondary-foreground: #FFFFFF;
+  
+  --muted: #F3EFE6;
+  /* Lighter espresso for muted text */
+  --muted-foreground: oklch(0.5 0.05 45);
+  
+  --accent: oklch(0.6 0.16 45);
+  --accent-foreground: #FFFFFF;
+  
+  --destructive: oklch(0.55 0.19 27);
+  --destructive-foreground: #FFFFFF;
+  
+  /* Warm subtle borders */
+  --border: #E8E2D2;
+  --input: #E8E2D2;
+  --ring: oklch(0.6 0.16 45);
+  
+  --olive: oklch(0.48 0.1 125);
+  --olive-foreground: #FFFFFF;
+  
+  --gold: oklch(0.6 0.16 45); /* Mapped to Burnt Orange */
+  --gold-foreground: #FFFFFF;
+  
+  /* Charcoal Brown for dark sections and footer */
+  --cocoa: oklch(0.22 0.02 45);
+  --cocoa-foreground: #FDFBF7;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
