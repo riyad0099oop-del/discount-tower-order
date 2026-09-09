@@ -15,7 +15,13 @@ export function Footer() {
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="inline-flex rounded-xl bg-background p-3">
-            <img src={logo.url} alt="برج التخفيضات" className="h-12 w-auto" width={220} height={66} />
+            <img
+              src={logo.url}
+              alt="برج التخفيضات"
+              className="h-12 w-auto"
+              width={220}
+              height={66}
+            />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-7 opacity-80">
             بيتزا ومناقيش طازجة تُحضّر يوميًا بمكونات مختارة، بطعم يستاهل ترجع له.
@@ -25,11 +31,31 @@ export function Footer() {
         <div>
           <h3 className="text-base font-bold">روابط</h3>
           <ul className="mt-4 space-y-2 text-sm opacity-80">
-            <li><Link to="/menu" className="hover:opacity-100">المنيو</Link></li>
-            <li><Link to="/offers" className="hover:opacity-100">العروض</Link></li>
-            <li><Link to="/about" className="hover:opacity-100">من نحن</Link></li>
-            <li><Link to="/branches" className="hover:opacity-100">الفروع</Link></li>
-            <li><Link to="/contact" className="hover:opacity-100">تواصل معنا</Link></li>
+            <li>
+              <Link to="/menu" className="hover:opacity-100">
+                المنيو
+              </Link>
+            </li>
+            <li>
+              <Link to="/offers" className="hover:opacity-100">
+                العروض
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:opacity-100">
+                من نحن
+              </Link>
+            </li>
+            <li>
+              <Link to="/branches" className="hover:opacity-100">
+                الفروع
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:opacity-100">
+                تواصل معنا
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -40,7 +66,9 @@ export function Footer() {
             <li>واتساب: {ph(settings.whatsapp, "— يُضاف لاحقًا")}</li>
             <li>إنستقرام: {ph(settings.instagram, "— يُضاف لاحقًا")}</li>
             <li>ساعات العمل: {ph(settings.hours, "— تُضاف لاحقًا")}</li>
-            <li>الفروع: {settings.branches.length ? settings.branches.join("، ") : "— تُضاف لاحقًا"}</li>
+            <li>
+              الفروع: {settings.branches.length ? settings.branches.join("، ") : "— تُضاف لاحقًا"}
+            </li>
           </ul>
         </div>
       </div>

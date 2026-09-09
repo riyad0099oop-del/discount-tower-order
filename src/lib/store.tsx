@@ -111,7 +111,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       },
       updateQty: (key, qty) =>
         setCart((prev) =>
-          qty <= 0 ? prev.filter((i) => i.key !== key) : prev.map((i) => (i.key === key ? { ...i, qty } : i)),
+          qty <= 0
+            ? prev.filter((i) => i.key !== key)
+            : prev.map((i) => (i.key === key ? { ...i, qty } : i)),
         ),
       removeItem: (key) => setCart((prev) => prev.filter((i) => i.key !== key)),
       clearCart: () => setCart([]),

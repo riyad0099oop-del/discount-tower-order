@@ -1,11 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
-import {
-  FlourDecor,
-  TomatoDecor,
-  BasilDecor
-} from "@/components/site/Decorations";
+import { FlourDecor, TomatoDecor, BasilDecor } from "@/components/site/Decorations";
 import { Layout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ProductSheet } from "@/components/site/ProductSheet";
@@ -17,12 +13,15 @@ type MenuSearch = { cat?: string | undefined };
 
 export const Route = createFileRoute("/menu")({
   validateSearch: (search: Record<string, unknown>): MenuSearch => ({
-    cat: typeof search['cat'] === "string" ? (search['cat'] as string) : undefined,
+    cat: typeof search["cat"] === "string" ? (search["cat"] as string) : undefined,
   }),
   head: () => ({
     meta: [
       { title: "المنيو | بيتزا برج التخفيضات" },
-      { name: "description", content: "تصفح منيو برج التخفيضات: بيتزا بأحجام مختلفة ومناقيش طازجة بأسعار واضحة." },
+      {
+        name: "description",
+        content: "تصفح منيو برج التخفيضات: بيتزا بأحجام مختلفة ومناقيش طازجة بأسعار واضحة.",
+      },
       { property: "og:title", content: "المنيو | بيتزا برج التخفيضات" },
       { property: "og:description", content: "اختر طلبك المفضل وخصصه بالطريقة التي تحبها." },
     ],
@@ -43,7 +42,9 @@ function MenuPage() {
   const filtered = useMemo(
     () =>
       products.filter(
-        (p) => p.active && (!query.trim() || p.name.includes(query.trim()) || p.description.includes(query.trim())),
+        (p) =>
+          p.active &&
+          (!query.trim() || p.name.includes(query.trim()) || p.description.includes(query.trim())),
       ),
     [products, query],
   );
@@ -55,10 +56,12 @@ function MenuPage() {
         <FlourDecor className="absolute top-4 start-10 size-48 text-foreground opacity-15 pointer-events-none hidden sm:block" />
         <BasilDecor className="absolute bottom-4 end-10 size-24 text-olive opacity-25 rotate-45 pointer-events-none hidden sm:block" />
         <TomatoDecor className="absolute top-1/2 end-[20%] size-32 text-primary opacity-15 -translate-y-1/2 -rotate-12 pointer-events-none hidden lg:block" />
-        
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 z-10 text-center">
           <h1 className="text-4xl sm:text-5xl font-black text-foreground">المنيو</h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">اختر طلبك المفضل وخصصه بالطريقة التي تحبها.</p>
+          <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+            اختر طلبك المفضل وخصصه بالطريقة التي تحبها.
+          </p>
           <div className="relative mt-8 max-w-lg mx-auto">
             <Search className="pointer-events-none absolute end-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
             <Input
@@ -101,9 +104,17 @@ function MenuPage() {
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                 {items.map((p, idx) => {
                   // On desktop, first item is featured (wide). On mobile keep 2-col uniform.
-                  const isFeatured = idx === 0 && !query.trim() && (c.id === "pizza" || c.id === "manakish");
+                  const isFeatured =
+                    idx === 0 &&
+                    !query.trim() &&
+                    (c.id === "pizza" || c.id === "manakish" || c.id === "sandwiches");
                   return (
-                    <ProductCard key={p.id} product={p} onSelect={setSelected} featured={isFeatured} />
+                    <ProductCard
+                      key={p.id}
+                      product={p}
+                      onSelect={setSelected}
+                      featured={isFeatured}
+                    />
                   );
                 })}
               </div>

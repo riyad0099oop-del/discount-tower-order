@@ -99,24 +99,54 @@ function CheckoutPage() {
         <div className="space-y-8 rounded-[2.5rem] bg-surface p-8 shadow-sm border border-border/50">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <Label htmlFor="name" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">الاسم</Label>
-              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm" />
+              <Label
+                htmlFor="name"
+                className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+              >
+                الاسم
+              </Label>
+              <Input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm"
+              />
             </div>
             <div>
-              <Label htmlFor="phone" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">رقم الهاتف</Label>
-              <Input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm" />
+              <Label
+                htmlFor="phone"
+                className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+              >
+                رقم الهاتف
+              </Label>
+              <Input
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                inputMode="tel"
+                className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm"
+              />
             </div>
           </div>
 
           <div>
-            <Label className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-3 block">طريقة الاستلام</Label>
+            <Label className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-3 block">
+              طريقة الاستلام
+            </Label>
             <div className="grid grid-cols-2 gap-4">
-              {([["delivery", "توصيل"], ["pickup", "استلام من الفرع"]] as const).map(([key, label]) => (
+              {(
+                [
+                  ["delivery", "توصيل"],
+                  ["pickup", "استلام من الفرع"],
+                ] as const
+              ).map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => setMethod(key)}
                   className={`rounded-2xl border-2 p-5 text-center font-black transition-all duration-200 ${
-                    method === key ? "border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary" : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5 text-foreground"
+                    method === key
+                      ? "border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary"
+                      : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5 text-foreground"
                   }`}
                 >
                   {label}
@@ -128,21 +158,54 @@ function CheckoutPage() {
           {method === "delivery" ? (
             <div className="space-y-5">
               <div>
-                <Label htmlFor="address" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">العنوان</Label>
-                <Input id="address" value={address} onChange={(e) => setAddress(e.target.value)} className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm" />
+                <Label
+                  htmlFor="address"
+                  className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+                >
+                  العنوان
+                </Label>
+                <Input
+                  id="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm"
+                />
               </div>
               <div>
-                <Label htmlFor="loc" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">رابط الموقع (اختياري)</Label>
-                <Input id="loc" value={locationUrl} onChange={(e) => setLocationUrl(e.target.value)} placeholder="https://maps.app.goo.gl/..." className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm" />
+                <Label
+                  htmlFor="loc"
+                  className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+                >
+                  رابط الموقع (اختياري)
+                </Label>
+                <Input
+                  id="loc"
+                  value={locationUrl}
+                  onChange={(e) => setLocationUrl(e.target.value)}
+                  placeholder="https://maps.app.goo.gl/..."
+                  className="h-14 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm"
+                />
               </div>
               <div>
-                <Label htmlFor="locnotes" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">ملاحظات الموقع (اختياري)</Label>
-                <Textarea id="locnotes" value={locationNotes} onChange={(e) => setLocationNotes(e.target.value)} className="min-h-24 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm" />
+                <Label
+                  htmlFor="locnotes"
+                  className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+                >
+                  ملاحظات الموقع (اختياري)
+                </Label>
+                <Textarea
+                  id="locnotes"
+                  value={locationNotes}
+                  onChange={(e) => setLocationNotes(e.target.value)}
+                  className="min-h-24 rounded-2xl bg-card border-border/50 focus-visible:ring-primary shadow-sm"
+                />
               </div>
             </div>
           ) : (
             <div>
-              <Label className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-3 block">اختر الفرع</Label>
+              <Label className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-3 block">
+                اختر الفرع
+              </Label>
               {settings.branches.length ? (
                 <div className="grid gap-3 sm:grid-cols-2">
                   {settings.branches.map((b) => (
@@ -150,7 +213,9 @@ function CheckoutPage() {
                       key={b}
                       onClick={() => setBranch(b)}
                       className={`rounded-2xl border-2 p-4 font-black transition-all duration-200 ${
-                        branch === b ? "border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary" : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5"
+                        branch === b
+                          ? "border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary"
+                          : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5"
                       }`}
                     >
                       {b}
@@ -164,8 +229,18 @@ function CheckoutPage() {
           )}
 
           <div>
-            <Label htmlFor="notes" className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block">ملاحظات الطلب (اختياري)</Label>
-            <Textarea id="notes" value={orderNotes} onChange={(e) => setOrderNotes(e.target.value)} className="min-h-32 rounded-2xl bg-card border-border/50 focus-visible:ring-primary p-4 text-base shadow-sm" />
+            <Label
+              htmlFor="notes"
+              className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-2 block"
+            >
+              ملاحظات الطلب (اختياري)
+            </Label>
+            <Textarea
+              id="notes"
+              value={orderNotes}
+              onChange={(e) => setOrderNotes(e.target.value)}
+              className="min-h-32 rounded-2xl bg-card border-border/50 focus-visible:ring-primary p-4 text-base shadow-sm"
+            />
           </div>
         </div>
 
@@ -175,18 +250,32 @@ function CheckoutPage() {
             {cart.map((i) => (
               <li key={i.key} className="flex justify-between gap-4 text-base">
                 <span className="min-w-0">
-                  <span className="block font-bold">{i.qty} × {i.name}</span>
-                  {i.sizeLabel && <span className="text-sm text-muted-foreground font-medium mt-0.5 block">الحجم: {i.sizeLabel}</span>}
+                  <span className="block font-bold">
+                    {i.qty} × {i.name}
+                  </span>
+                  {i.sizeLabel && (
+                    <span className="text-sm text-muted-foreground font-medium mt-0.5 block">
+                      الحجم: {i.sizeLabel}
+                    </span>
+                  )}
                 </span>
-                <span className="font-black text-primary whitespace-nowrap">{i.unitPrice * i.qty} <span className="text-xs text-muted-foreground">ر.س</span></span>
+                <span className="font-black text-primary whitespace-nowrap">
+                  {i.unitPrice * i.qty} <span className="text-xs text-muted-foreground">ر.س</span>
+                </span>
               </li>
             ))}
           </ul>
           <div className="flex justify-between border-t-2 border-border/50 pt-5 text-xl font-black text-foreground">
             <span>الإجمالي</span>
-            <span className="text-primary">{cartTotal} <span className="text-sm">ر.س</span></span>
+            <span className="text-primary">
+              {cartTotal} <span className="text-sm">ر.س</span>
+            </span>
           </div>
-          <Button size="lg" className="h-16 w-full rounded-full bg-primary text-xl font-black text-primary-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-primary/20 mt-4" onClick={submit}>
+          <Button
+            size="lg"
+            className="h-16 w-full rounded-full bg-primary text-xl font-black text-primary-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-primary/20 mt-4"
+            onClick={submit}
+          >
             تأكيد الطلب
           </Button>
           {!settings.whatsapp && (

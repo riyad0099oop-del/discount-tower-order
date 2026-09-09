@@ -19,7 +19,9 @@ export function ProductCard({
         featured ? "flex-col sm:flex-row sm:col-span-2 lg:col-span-2" : "flex-col"
       }`}
     >
-      <div className={`relative overflow-hidden bg-cream ${featured ? "w-full sm:w-1/2 aspect-[4/3] sm:aspect-auto" : "w-full aspect-[4/3]"}`}>
+      <div
+        className={`relative overflow-hidden bg-cream ${featured ? "w-full sm:w-1/2 aspect-[4/3] sm:aspect-auto" : "w-full aspect-[4/3]"}`}
+      >
         <img
           src={product.image}
           alt={product.name}
@@ -33,15 +35,29 @@ export function ProductCard({
         )}
       </div>
 
-      <div className={`flex flex-col justify-between gap-2 p-3 sm:p-5 ${featured ? "w-full sm:w-1/2 justify-center" : "flex-1"}`}>
+      <div
+        className={`flex flex-col justify-between gap-2 p-3 sm:p-5 ${featured ? "w-full sm:w-1/2 justify-center" : "flex-1"}`}
+      >
         <div>
-          <h3 className={`font-black text-foreground leading-tight ${featured ? "text-xl sm:text-2xl lg:text-3xl" : "text-sm sm:text-lg"}`}>{product.name}</h3>
+          <h3
+            className={`font-black text-foreground leading-tight ${featured ? "text-xl sm:text-2xl lg:text-3xl" : "text-sm sm:text-lg"}`}
+          >
+            {product.name}
+          </h3>
         </div>
-        
+
         <div className="mt-1 sm:mt-2 flex items-end justify-between gap-1">
           <div className="flex flex-col">
-            {hasSizes && <span className="text-[9px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest mb-0.5">يبدأ من</span>}
-            <span className={`font-black text-primary ${featured ? "text-xl sm:text-2xl" : "text-base sm:text-xl"}`}>{startingPrice(product)}</span>
+            {hasSizes && (
+              <span className="text-[9px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
+                يبدأ من
+              </span>
+            )}
+            <span
+              className={`font-black text-primary ${featured ? "text-xl sm:text-2xl" : "text-base sm:text-xl"}`}
+            >
+              {startingPrice(product)}
+            </span>
           </div>
           <Button
             size="icon"

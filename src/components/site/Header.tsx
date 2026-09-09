@@ -24,7 +24,12 @@ export function Header() {
       <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="shrink-0 lg:hidden text-foreground hover:bg-black/5" aria-label="القائمة">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="shrink-0 lg:hidden text-foreground hover:bg-black/5"
+              aria-label="القائمة"
+            >
               <Menu className="size-6" />
             </Button>
           </SheetTrigger>
@@ -47,7 +52,13 @@ export function Header() {
         </Sheet>
 
         <Link to="/" className="flex min-w-0 shrink-0 items-center">
-          <img src={logo.url} alt="برج التخفيضات" className="h-12 w-auto sm:h-14 mix-blend-multiply" width={200} height={60} />
+          <img
+            src={logo.url}
+            alt="برج التخفيضات"
+            className="h-12 w-auto sm:h-14 mix-blend-multiply"
+            width={200}
+            height={60}
+          />
         </Link>
 
         <nav className="mx-auto hidden items-center gap-1 lg:flex">
@@ -76,7 +87,10 @@ export function Header() {
               </span>
             )}
           </button>
-          <Button asChild className="hidden rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-black px-6 sm:inline-flex shadow-sm">
+          <Button
+            asChild
+            className="hidden rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-black px-6 sm:inline-flex shadow-sm"
+          >
             <Link to="/menu">اطلب الآن</Link>
           </Button>
         </div>

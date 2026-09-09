@@ -4,20 +4,23 @@ import heroPizza from "@/assets/hero-pizza.jpg";
 import pizzaSpecial from "@/assets/pizza-special.jpg";
 import { Layout } from "@/components/site/Layout";
 import { Button } from "@/components/ui/button";
-import { 
-  BasilDecor, 
-  TomatoDecor, 
-  OliveDecor, 
-  FlourDecor, 
+import {
+  BasilDecor,
+  TomatoDecor,
+  OliveDecor,
+  FlourDecor,
   PizzaSliceDecor,
-  DoughCurveDecor
+  DoughCurveDecor,
 } from "@/components/site/Decorations";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "من نحن | بيتزا برج التخفيضات" },
-      { name: "description", content: "تعرف على برج التخفيضات: بيتزا ومناقيش طازجة بمكونات مختارة وتحضير سريع." },
+      {
+        name: "description",
+        content: "تعرف على برج التخفيضات: بيتزا ومناقيش طازجة بمكونات مختارة وتحضير سريع.",
+      },
       { property: "og:title", content: "من نحن | بيتزا برج التخفيضات" },
       { property: "og:description", content: "قصة برج التخفيضات وطريقتنا في التحضير." },
     ],
@@ -51,7 +54,6 @@ function AboutPage() {
       {/* 2. OUR STORY (EDITORIAL) */}
       <section className="relative overflow-hidden bg-background py-12 sm:py-24 lg:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-8 sm:gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20">
-          
           {/* Mobile: Text Appears First */}
           <div className="order-1 lg:order-2 space-y-6 sm:space-y-8 fade-up">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-[1.2]">
@@ -59,11 +61,10 @@ function AboutPage() {
             </h2>
             <div className="space-y-4 sm:space-y-6 text-lg sm:text-xl leading-[1.8] text-foreground/75 font-medium">
               <p>
-                في برج التخفيضات نحضّر البيتزا والمناقيش يوميًا بعجينة طازجة وخلطات متوازنة، مع تركيز على الجودة والسعر المناسب.
+                في برج التخفيضات نحضّر البيتزا والمناقيش يوميًا بعجينة طازجة وخلطات متوازنة، مع
+                تركيز على الجودة والسعر المناسب.
               </p>
-              <p>
-                هدفنا بسيط: طلب سهل، تحضير سريع، وطعم يستاهل ترجع له في كل مرة.
-              </p>
+              <p>هدفنا بسيط: طلب سهل، تحضير سريع، وطعم يستاهل ترجع له في كل مرة.</p>
             </div>
           </div>
 
@@ -76,15 +77,14 @@ function AboutPage() {
 
             {/* Organic Editorial Image */}
             <div className="relative aspect-[4/5] sm:aspect-square w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] lg:rounded-[4rem] rounded-tl-[4rem] sm:rounded-tl-[8rem] lg:rounded-br-[8rem] border border-border/40 shadow-sm mix-blend-multiply bg-cream/50">
-              <img 
-                src={heroPizza} 
-                alt="تحضير بيتزا برج التخفيضات" 
-                loading="lazy" 
+              <img
+                src={heroPizza}
+                alt="تحضير بيتزا برج التخفيضات"
+                loading="lazy"
                 className="w-full h-full object-cover brightness-[1.02] contrast-[1.05]"
               />
             </div>
           </div>
-
         </div>
       </section>
 
@@ -94,7 +94,7 @@ function AboutPage() {
           <div className="text-center mb-10 sm:mb-16 fade-up">
             <h2 className="text-3xl sm:text-4xl font-black text-foreground">نهتم بالتفاصيل</h2>
           </div>
-          
+
           <div className="grid gap-10 sm:gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 fade-up">
             {[
               { icon: Sparkles, title: "طعم مميز", desc: "طعم يستاهل ترجع له في كل مرة." },
@@ -107,9 +107,7 @@ function AboutPage() {
                   <f.icon className="size-6" />
                 </span>
                 <h3 className="mb-2 sm:mb-3 text-xl font-bold text-foreground">{f.title}</h3>
-                <p className="text-base text-foreground/60 leading-relaxed font-medium">
-                  {f.desc}
-                </p>
+                <p className="text-base text-foreground/60 leading-relaxed font-medium">{f.desc}</p>
                 {/* Desktop Divider */}
                 {i !== 3 && (
                   <div className="hidden lg:block absolute top-1/2 -end-4 h-12 w-px bg-border/60 -translate-y-1/2" />
@@ -128,15 +126,15 @@ function AboutPage() {
       <section className="relative bg-background py-12 sm:py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 fade-up">
           <div className="relative w-full aspect-[4/3] sm:aspect-[21/9] rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-sm border border-border/50">
-            <img 
-              src={pizzaSpecial} 
-              alt="أجواء برج التخفيضات" 
-              loading="lazy" 
+            <img
+              src={pizzaSpecial}
+              alt="أجواء برج التخفيضات"
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Soft Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-cocoa/80 via-cocoa/30 to-transparent" />
-            
+
             <div className="absolute bottom-0 left-0 w-full p-6 sm:p-12 text-center sm:text-start">
               <p className="text-xl sm:text-2xl lg:text-3xl font-black text-white max-w-2xl leading-tight">
                 "نحضّر البيتزا والمناقيش يوميًا بكل اهتمام.. لنضمن لك الجودة والطعم الأصيل."
@@ -150,7 +148,7 @@ function AboutPage() {
       <section className="relative overflow-hidden bg-cocoa py-16 sm:py-20 lg:py-24">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay pointer-events-none" />
-        
+
         {/* Large Decorative Pizza Slice */}
         <PizzaSliceDecor className="absolute top-[-10%] end-[-5%] size-64 lg:size-96 text-cream opacity-[0.05] rotate-12 pointer-events-none hidden sm:block" />
         <DoughCurveDecor className="absolute bottom-[-20%] start-[-5%] size-80 text-cream opacity-[0.03] -rotate-12 pointer-events-none hidden sm:block" />
@@ -160,10 +158,19 @@ function AboutPage() {
             جاهز تختار طلبك؟
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="h-14 w-full sm:w-auto rounded-full bg-primary px-10 text-lg font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 shadow-lg shadow-primary/20 border-0">
+            <Button
+              asChild
+              size="lg"
+              className="h-14 w-full sm:w-auto rounded-full bg-primary px-10 text-lg font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 shadow-lg shadow-primary/20 border-0"
+            >
               <Link to="/menu">اطلب الآن</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-14 w-full sm:w-auto rounded-full border border-cream/20 bg-transparent px-10 text-lg font-bold text-cream transition-all hover:bg-cream/10 hover:border-cream/40">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-14 w-full sm:w-auto rounded-full border border-cream/20 bg-transparent px-10 text-lg font-bold text-cream transition-all hover:bg-cream/10 hover:border-cream/40"
+            >
               <Link to="/menu">استعرض المنيو</Link>
             </Button>
           </div>
@@ -172,4 +179,3 @@ function AboutPage() {
     </Layout>
   );
 }
-

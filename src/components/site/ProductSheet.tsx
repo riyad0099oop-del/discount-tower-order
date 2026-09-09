@@ -61,12 +61,16 @@ export function ProductSheet({
         <div className="relative z-20 -mt-6 sm:-mt-10 space-y-6 lg:space-y-8 rounded-t-[2rem] bg-surface px-5 sm:px-8 pt-6 pb-2">
           <div>
             <h2 className="text-3xl font-black text-foreground">{product.name}</h2>
-            {product.description && <p className="mt-2 text-muted-foreground">{product.description}</p>}
+            {product.description && (
+              <p className="mt-2 text-muted-foreground">{product.description}</p>
+            )}
           </div>
 
           {product.sizes?.length ? (
             <div className="pt-2">
-              <p className="mb-3 text-sm font-bold uppercase tracking-widest text-muted-foreground">اختر الحجم</p>
+              <p className="mb-3 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                اختر الحجم
+              </p>
               <div className="grid grid-cols-3 gap-3">
                 {product.sizes.map((s) => {
                   const selected = s.key === sizeKey;
@@ -80,9 +84,19 @@ export function ProductSheet({
                           : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5"
                       }`}
                     >
-                      <span className={`text-xl font-black mb-1 ${selected ? "text-primary" : "text-foreground"}`}>{s.key}</span>
-                      <span className="block text-xs sm:text-sm font-bold text-muted-foreground mb-1">{s.label}</span>
-                      <span className={`block text-base sm:text-lg font-black ${selected ? "text-primary" : "text-foreground"}`}>{s.price} ر.س</span>
+                      <span
+                        className={`text-xl font-black mb-1 ${selected ? "text-primary" : "text-foreground"}`}
+                      >
+                        {s.key}
+                      </span>
+                      <span className="block text-xs sm:text-sm font-bold text-muted-foreground mb-1">
+                        {s.label}
+                      </span>
+                      <span
+                        className={`block text-base sm:text-lg font-black ${selected ? "text-primary" : "text-foreground"}`}
+                      >
+                        {s.price} ر.س
+                      </span>
                     </button>
                   );
                 })}
@@ -91,7 +105,9 @@ export function ProductSheet({
           ) : null}
 
           <div className="pt-2">
-            <p className="mb-3 text-sm font-bold uppercase tracking-widest text-muted-foreground">ملاحظات (اختياري)</p>
+            <p className="mb-3 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              ملاحظات (اختياري)
+            </p>
             <Textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
@@ -99,33 +115,53 @@ export function ProductSheet({
               className="min-h-[100px] resize-none rounded-2xl border-border/50 bg-card p-4 text-base focus-visible:ring-primary shadow-sm"
             />
           </div>
-          
+
           {/* Quantity controller is here but not total, total goes to bottom bar */}
           <div className="pt-2">
-             <div className="flex flex-col items-center justify-center rounded-3xl bg-card py-6 border border-border/50 shadow-sm">
-                <p className="mb-4 text-sm font-bold text-muted-foreground uppercase tracking-widest">الكمية</p>
-                <div className="flex items-center gap-4">
-                  <Button variant="outline" size="icon" className="size-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 bg-surface shadow-sm" onClick={() => setQty((q) => Math.max(1, q - 1))}>
-                    <Minus className="size-5" />
-                  </Button>
-                  <span className="w-12 text-center text-3xl font-black text-foreground">{qty}</span>
-                  <Button variant="outline" size="icon" className="size-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 bg-surface shadow-sm" onClick={() => setQty((q) => q + 1)}>
-                    <Plus className="size-5" />
-                  </Button>
-                </div>
+            <div className="flex flex-col items-center justify-center rounded-3xl bg-card py-6 border border-border/50 shadow-sm">
+              <p className="mb-4 text-sm font-bold text-muted-foreground uppercase tracking-widest">
+                الكمية
+              </p>
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 bg-surface shadow-sm"
+                  onClick={() => setQty((q) => Math.max(1, q - 1))}
+                >
+                  <Minus className="size-5" />
+                </Button>
+                <span className="w-12 text-center text-3xl font-black text-foreground">{qty}</span>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 bg-surface shadow-sm"
+                  onClick={() => setQty((q) => q + 1)}
+                >
+                  <Plus className="size-5" />
+                </Button>
               </div>
+            </div>
           </div>
         </div>
       </div>
-      
+
       {/* Fixed Bottom Bar */}
       <div className="border-t border-border/50 bg-surface p-4 sm:p-6 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.05)] shrink-0 z-50">
         <div className="flex items-center justify-between gap-4">
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">الإجمالي</span>
-            <span className="text-2xl font-black text-primary">{total} <span className="text-sm">ر.س</span></span>
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">
+              الإجمالي
+            </span>
+            <span className="text-2xl font-black text-primary">
+              {total} <span className="text-sm">ر.س</span>
+            </span>
           </div>
-          <Button size="lg" className="h-14 sm:h-16 flex-1 rounded-full bg-primary text-lg sm:text-xl font-bold text-primary-foreground shadow-xl shadow-primary/25 hover:scale-[1.02] hover:bg-primary/90 transition-all" onClick={submit}>
+          <Button
+            size="lg"
+            className="h-14 sm:h-16 flex-1 rounded-full bg-primary text-lg sm:text-xl font-bold text-primary-foreground shadow-xl shadow-primary/25 hover:scale-[1.02] hover:bg-primary/90 transition-all"
+            onClick={submit}
+          >
             إضافة للسلة
           </Button>
         </div>

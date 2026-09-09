@@ -16,6 +16,7 @@ import manMeat from "@/assets/man-meat.jpg";
 import manChicken from "@/assets/man-chicken.jpg";
 import manNutella from "@/assets/man-nutella.jpg";
 import manSpinach from "@/assets/man-spinach.jpg";
+import sandwich from "@/assets/sandwich.jpg";
 
 export type SizeKey = "S" | "M" | "L";
 
@@ -49,6 +50,7 @@ export type Category = {
 export const defaultCategories: Category[] = [
   { id: "pizza", name: "البيتزا", image: pizzaSpecial, active: true },
   { id: "manakish", name: "المناقيش", image: manZaatar, active: true },
+  { id: "sandwiches", name: "السيندويتشات", image: sandwich, active: true },
 ];
 
 const S = (s: number, m: number, l: number): ProductSize[] => [
@@ -240,6 +242,34 @@ manakishSeed.forEach(([name, description, price, image, bestSeller], i) => {
     price,
     active: true,
     featured: i < 6,
+    bestSeller,
+    offer: false,
+  });
+});
+
+type SandwichSeed = [string, string, number, string, boolean];
+
+const sandwichesSeed: SandwichSeed[] = [
+  ["ساندويتش دجاج فاهيتا", "دجاج متبل مع فلفل رومي وبصل وجبن", 15, sandwich, true],
+  ["ساندويتش زنجر", "دجاج مقرمش حار مع خس وصوص خاص", 16, sandwich, true],
+  ["ساندويتش فرانسيسكو", "دجاج، فطر، ذرة، وجبنة موزاريلا ذائبة", 15, sandwich, false],
+  ["ساندويتش حلوم مشوي", "جبنة حلوم مشوية مع طماطم وزعتر وزيتون", 12, sandwich, false],
+  ["ساندويتش كفتة بالجبن", "كفتة مشوية مع جبن وطماطم ومخلل", 14, sandwich, false],
+  ["ساندويتش نقانق", "نقانق مع صوص الخردل والكاتشب والجبن", 12, sandwich, false],
+  ["ساندويتش تونة", "خلطة التونة مع المايونيز والخس الطازج", 13, sandwich, false],
+  ["ساندويتش روست بيف", "شرائح روست بيف مع جبنة شيدر وصوص", 17, sandwich, true],
+];
+
+sandwichesSeed.forEach(([name, description, price, image, bestSeller], i) => {
+  defaultProducts.push({
+    id: `sandwich-${i + 1}`,
+    name,
+    description,
+    image,
+    category: "sandwiches",
+    price,
+    active: true,
+    featured: i < 3,
     bestSeller,
     offer: false,
   });

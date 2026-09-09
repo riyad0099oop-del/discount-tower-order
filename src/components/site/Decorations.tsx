@@ -3,7 +3,15 @@ import React from "react";
 type DecorProps = React.SVGProps<SVGSVGElement>;
 
 export const BasilDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="0.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
     <path d="M12 2C7.5 2 4 7 4 13C4 19 12 22 12 22C12 22 20 19 20 13C20 7 16.5 2 12 2Z" />
     <path d="M12 22V10" />
     <path d="M12 16L8 14" />
@@ -12,14 +20,30 @@ export const BasilDecor = (props: DecorProps) => (
 );
 
 export const OliveDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
     <circle cx="12" cy="12" r="8" />
     <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
 export const TomatoDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="0.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
     <circle cx="12" cy="12" r="10" />
     <circle cx="12" cy="12" r="2" />
     <path d="M12 2V4" />
@@ -37,7 +61,15 @@ export const TomatoDecor = (props: DecorProps) => (
 );
 
 export const MushroomDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="0.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
     <path d="M20 12c0-4.4-4-8-8-8s-8 3.6-8 8h16z" />
     <path d="M10 12v8h4v-8" />
     <path d="M7 12v2" />
@@ -46,7 +78,15 @@ export const MushroomDecor = (props: DecorProps) => (
 );
 
 export const PizzaSliceDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="0.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
     <path d="M12 21L2 5c2-2 18-2 20 0L12 21z" />
     <path d="M2 5c2.5-1.5 17.5-1.5 20 0" strokeWidth="1.5" />
     <circle cx="12" cy="10" r="1.5" />
@@ -70,7 +110,16 @@ export const FlourDecor = (props: DecorProps) => (
 );
 
 export const DoughCurveDecor = (props: DecorProps) => (
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round" preserveAspectRatio="none" {...props}>
+  <svg
+    viewBox="0 0 100 100"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="0.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    preserveAspectRatio="none"
+    {...props}
+  >
     <path d="M0,50 Q25,20 50,50 T100,50" />
   </svg>
 );

@@ -12,7 +12,10 @@ export const Route = createFileRoute("/offers")({
   head: () => ({
     meta: [
       { title: "العروض | بيتزا برج التخفيضات" },
-      { name: "description", content: "عروض برج التخفيضات على البيتزا والمناقيش، تُحدّث باستمرار." },
+      {
+        name: "description",
+        content: "عروض برج التخفيضات على البيتزا والمناقيش، تُحدّث باستمرار.",
+      },
       { property: "og:title", content: "العروض | بيتزا برج التخفيضات" },
       { property: "og:description", content: "اكتشف عروض برج التخفيضات وخيارات تناسب كل طلب." },
     ],
@@ -35,13 +38,22 @@ function OffersPage() {
               اكتشف عروض برج التخفيضات وخيارات تناسب كل طلب.
             </p>
             <div>
-              <Button asChild size="lg" className="mt-2 h-13 rounded-full bg-accent px-8 text-accent-foreground hover:bg-accent/90">
+              <Button
+                asChild
+                size="lg"
+                className="mt-2 h-13 rounded-full bg-accent px-8 text-accent-foreground hover:bg-accent/90"
+              >
                 <Link to="/menu">تصفح المنيو</Link>
               </Button>
             </div>
           </div>
           <div className="min-h-56 md:min-h-72">
-            <img src={promoSlice} alt="عرض بيتزا" loading="lazy" className="size-full object-cover" />
+            <img
+              src={promoSlice}
+              alt="عرض بيتزا"
+              loading="lazy"
+              className="size-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -56,7 +68,9 @@ function OffersPage() {
         ) : (
           <div className="rounded-3xl border border-dashed border-border bg-surface p-12 text-center">
             <h2 className="text-xl font-bold">لا توجد عروض معلنة حاليًا</h2>
-            <p className="mt-2 text-muted-foreground">تابعنا، سنعلن عن عروض برج التخفيضات قريبًا.</p>
+            <p className="mt-2 text-muted-foreground">
+              تابعنا، سنعلن عن عروض برج التخفيضات قريبًا.
+            </p>
           </div>
         )}
       </section>

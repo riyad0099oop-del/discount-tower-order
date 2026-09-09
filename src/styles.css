@@ -54,51 +54,51 @@
 :root {
   --radius: 1rem;
   /* Distinct Warm Beige for the entire site */
-  --background: #F4EBE1;
+  --background: #f4ebe1;
   --foreground: oklch(0.28 0.04 45); /* Espresso Brown */
-  
-  --cream: #EADDCD; /* Slightly deeper beige if needed */
-  --surface: #F4EBE1;
-  
+
+  --cream: #eaddcd; /* Slightly deeper beige if needed */
+  --surface: #f4ebe1;
+
   /* Cards remain slightly distinct or the same, pure white can pop nicely, but let's make them #FFFFFF for contrast or keep them slightly warm */
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: oklch(0.28 0.04 45);
-  
-  --popover: #FFFFFF;
+
+  --popover: #ffffff;
   --popover-foreground: oklch(0.28 0.04 45);
-  
+
   /* Burnt Orange for primary actions, prices, offers */
   --primary: oklch(0.6 0.16 45);
-  --primary-foreground: #FFFFFF;
-  
+  --primary-foreground: #ffffff;
+
   /* Olive Green as secondary helper */
   --secondary: oklch(0.48 0.1 125);
-  --secondary-foreground: #FFFFFF;
-  
-  --muted: #F3EFE6;
+  --secondary-foreground: #ffffff;
+
+  --muted: #f3efe6;
   /* Lighter espresso for muted text */
   --muted-foreground: oklch(0.5 0.05 45);
-  
+
   --accent: oklch(0.6 0.16 45);
-  --accent-foreground: #FFFFFF;
-  
+  --accent-foreground: #ffffff;
+
   --destructive: oklch(0.55 0.19 27);
-  --destructive-foreground: #FFFFFF;
-  
+  --destructive-foreground: #ffffff;
+
   /* Warm subtle borders */
-  --border: #E8E2D2;
-  --input: #E8E2D2;
+  --border: #e8e2d2;
+  --input: #e8e2d2;
   --ring: oklch(0.6 0.16 45);
-  
+
   --olive: oklch(0.48 0.1 125);
-  --olive-foreground: #FFFFFF;
-  
+  --olive-foreground: #ffffff;
+
   --gold: oklch(0.6 0.16 45); /* Mapped to Burnt Orange */
-  --gold-foreground: #FFFFFF;
-  
+  --gold-foreground: #ffffff;
+
   /* Charcoal Brown for dark sections and footer */
   --cocoa: oklch(0.22 0.02 45);
-  --cocoa-foreground: #FDFBF7;
+  --cocoa-foreground: #fdfbf7;
 }
 
 @layer base {
