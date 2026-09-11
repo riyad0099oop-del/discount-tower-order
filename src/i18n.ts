@@ -135,8 +135,13 @@ const resources = {
   }
 };
 
+const isBrowser = typeof window !== 'undefined';
+
+if (isBrowser) {
+  i18n.use(LanguageDetector);
+}
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
@@ -146,10 +151,10 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    detection: {
+    detection: isBrowser ? {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
-    }
+    } : undefined
   });
 
 export default i18n;
