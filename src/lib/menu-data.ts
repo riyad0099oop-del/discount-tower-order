@@ -20,16 +20,18 @@ import sandwich from "@/assets/sandwich.jpg";
 
 export type SizeKey = "S" | "M" | "L";
 
+export type LocalizedString = { ar: string; en: string };
+
 export type ProductSize = {
   key: SizeKey;
-  label: string;
+  label: LocalizedString;
   price: number;
 };
 
 export type Product = {
   id: string;
-  name: string;
-  description: string;
+  name: LocalizedString;
+  description: LocalizedString;
   image: string;
   category: string;
   sizes?: ProductSize[];
@@ -42,28 +44,28 @@ export type Product = {
 
 export type Category = {
   id: string;
-  name: string;
+  name: LocalizedString;
   image: string;
   active: boolean;
 };
 
 export const defaultCategories: Category[] = [
-  { id: "pizza", name: "البيتزا", image: pizzaSpecial, active: true },
-  { id: "manakish", name: "المناقيش", image: manZaatar, active: true },
-  { id: "sandwiches", name: "السيندويتشات", image: sandwich, active: true },
+  { id: "pizza", name: { ar: "البيتزا", en: "Pizza" }, image: pizzaSpecial, active: true },
+  { id: "manakish", name: { ar: "المناقيش", en: "Manakish" }, image: manZaatar, active: true },
+  { id: "sandwiches", name: { ar: "السيندويتشات", en: "Sandwiches" }, image: sandwich, active: true },
 ];
 
 const S = (s: number, m: number, l: number): ProductSize[] => [
-  { key: "S", label: "صغير", price: s },
-  { key: "M", label: "وسط", price: m },
-  { key: "L", label: "كبير", price: l },
+  { key: "S", label: { ar: "صغير", en: "Small" }, price: s },
+  { key: "M", label: { ar: "وسط", en: "Medium" }, price: m },
+  { key: "L", label: { ar: "كبير", en: "Large" }, price: l },
 ];
 
 export const defaultProducts: Product[] = [
   {
     id: "pizza-ranch",
-    name: "بيتزا رانش",
-    description: "دجاج مشوي وصلصة رانش وجبن موزاريلا",
+    name: { ar: "بيتزا رانش", en: "Ranch Pizza" },
+    description: { ar: "دجاج مشوي وصلصة رانش وجبن موزاريلا", en: "Grilled chicken, ranch sauce, and mozzarella cheese" },
     image: pizzaRanch,
     category: "pizza",
     sizes: S(13, 20, 28),
@@ -74,8 +76,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-bbq",
-    name: "بيتزا باربكيو",
-    description: "صلصة باربكيو مدخنة مع دجاج وجبن",
+    name: { ar: "بيتزا باربكيو", en: "BBQ Pizza" },
+    description: { ar: "صلصة باربكيو مدخنة مع دجاج وجبن", en: "Smoked BBQ sauce with chicken and cheese" },
     image: pizzaBbq,
     category: "pizza",
     sizes: S(13, 20, 28),
@@ -86,8 +88,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-cheese",
-    name: "بيتزا أجبان",
-    description: "خلطة أجبان غنية وذائبة",
+    name: { ar: "بيتزا أجبان", en: "Cheese Pizza" },
+    description: { ar: "خلطة أجبان غنية وذائبة", en: "Rich and melted cheese mix" },
     image: pizzaCheese,
     category: "pizza",
     sizes: S(13, 20, 28),
@@ -98,8 +100,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-pepperoni",
-    name: "بيتزا ببروني",
-    description: "شرائح ببروني مع موزاريلا وصلصة الطماطم",
+    name: { ar: "بيتزا ببروني", en: "Pepperoni Pizza" },
+    description: { ar: "شرائح ببروني مع موزاريلا وصلصة الطماطم", en: "Pepperoni slices with mozzarella and tomato sauce" },
     image: pizzaPepperoni,
     category: "pizza",
     sizes: S(13, 20, 28),
@@ -110,8 +112,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-chicken",
-    name: "بيتزا دجاج",
-    description: "قطع دجاج متبلة مع جبن طازج",
+    name: { ar: "بيتزا دجاج", en: "Chicken Pizza" },
+    description: { ar: "قطع دجاج متبلة مع جبن طازج", en: "Marinated chicken pieces with fresh cheese" },
     image: pizzaRanch,
     category: "pizza",
     sizes: S(13, 20, 28),
@@ -122,8 +124,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-meat",
-    name: "بيتزا لحم",
-    description: "لحم بقري مع بصل وجبن",
+    name: { ar: "بيتزا لحم", en: "Meat Pizza" },
+    description: { ar: "لحم بقري مع بصل وجبن", en: "Beef with onions and cheese" },
     image: pizzaMeat,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -134,8 +136,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-tuna",
-    name: "بيتزا تونة",
-    description: "تونة مع زيتون وبصل",
+    name: { ar: "بيتزا تونة", en: "Tuna Pizza" },
+    description: { ar: "تونة مع زيتون وبصل", en: "Tuna with olives and onions" },
     image: pizzaTuna,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -146,8 +148,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-sausage",
-    name: "بيتزا نقانق",
-    description: "شرائح نقانق مع جبن موزاريلا",
+    name: { ar: "بيتزا نقانق", en: "Sausage Pizza" },
+    description: { ar: "شرائح نقانق مع جبن موزاريلا", en: "Sausage slices with mozzarella cheese" },
     image: pizzaSausage,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -158,8 +160,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-veg",
-    name: "بيتزا خضار",
-    description: "فلفل وزيتون وفطر وطماطم",
+    name: { ar: "بيتزا خضار", en: "Vegetable Pizza" },
+    description: { ar: "فلفل وزيتون وفطر وطماطم", en: "Bell pepper, olives, mushrooms, and tomatoes" },
     image: pizzaVeg,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -170,8 +172,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-margherita",
-    name: "بيتزا مارغريتا",
-    description: "الكلاسيكية: طماطم وجبن وريحان",
+    name: { ar: "بيتزا مارغريتا", en: "Margherita Pizza" },
+    description: { ar: "الكلاسيكية: طماطم وجبن وريحان", en: "Classic: Tomato, cheese, and basil" },
     image: pizzaMargherita,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -182,8 +184,8 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-honey",
-    name: "عش البلبل بالعسل",
-    description: "أطراف محشوة بالجبن مع لمسة عسل",
+    name: { ar: "عش البلبل بالعسل", en: "Osh El Bulbul with Honey" },
+    description: { ar: "أطراف محشوة بالجبن مع لمسة عسل", en: "Cheese-stuffed crust with a touch of honey" },
     image: pizzaHoney,
     category: "pizza",
     sizes: S(13, 19, 25),
@@ -194,13 +196,13 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "pizza-special",
-    name: "بيتزا سبيشل",
-    description: "خلطة برج التخفيضات الخاصة",
+    name: { ar: "بيتزا سبيشل", en: "Special Pizza" },
+    description: { ar: "خلطة برج التخفيضات الخاصة", en: "Discount Tower Special Mix" },
     image: pizzaSpecial,
     category: "pizza",
     sizes: [
-      { key: "M", label: "وسط", price: 23 },
-      { key: "L", label: "كبير", price: 30 },
+      { key: "M", label: { ar: "وسط", en: "Medium" }, price: 23 },
+      { key: "L", label: { ar: "كبير", en: "Large" }, price: 30 },
     ],
     active: true,
     featured: true,
@@ -209,27 +211,27 @@ export const defaultProducts: Product[] = [
   },
 ];
 
-type ManakishSeed = [string, string, number, string, boolean];
+type ManakishSeed = [LocalizedString, LocalizedString, number, string, boolean];
 
 const manakishSeed: ManakishSeed[] = [
-  ["جبنة سائلة مقفلة", "منقوشة مقفلة بجبنة سائلة", 10, manCheese, false],
-  ["لبنة سادة", "لبنة طازجة مع زيت الزيتون", 10, manLabneh, false],
-  ["لبنة جبن", "لبنة مع جبن موزاريلا", 13, manLabneh, false],
-  ["لبنة زعتر أو زيتون", "لبنة مع زعتر أو زيتون", 13, manLabneh, false],
-  ["مشكل أجبان", "خلطة أجبان مشكلة", 13, manCheese, true],
-  ["جبنة شيدر", "جبنة شيدر ذائبة", 10, manCheese, false],
-  ["جبنة موزاريلا", "موزاريلا طازجة", 10, manCheese, false],
-  ["لبنة عسل", "لبنة مع عسل طبيعي", 13, manLabneh, false],
-  ["جبنة زعتر أو زيتون", "جبن مع زعتر أو زيتون", 13, manZaatar, false],
-  ["نوتيلا", "نوتيلا غنية على عجينة طازجة", 10, manNutella, false],
-  ["زعتر سادة", "زعتر بلدي وزيت زيتون", 8, manZaatar, false],
-  ["بيض بالجبن", "بيض طازج مع جبن", 13, manCheese, false],
-  ["سبانخ", "سبانخ بالليمون والبصل", 10, manSpinach, false],
-  ["سبانخ بالجبن", "سبانخ مع جبن ذائب", 13, manSpinach, false],
-  ["لحم بالعجين", "لحم بالعجين على الطريقة البلدية", 10, manMeat, false],
-  ["لحم بالجبن", "لحم مع جبن موزاريلا", 13, manMeat, false],
-  ["دجاج سادة", "دجاج متبل طازج", 10, manChicken, false],
-  ["دجاج بالجبن", "دجاج مع جبن ذائب", 13, manChicken, true],
+  [{ ar: "جبنة سائلة مقفلة", en: "Closed Liquid Cheese" }, { ar: "منقوشة مقفلة بجبنة سائلة", en: "Closed manousheh with liquid cheese" }, 10, manCheese, false],
+  [{ ar: "لبنة سادة", en: "Plain Labneh" }, { ar: "لبنة طازجة مع زيت الزيتون", en: "Fresh labneh with olive oil" }, 10, manLabneh, false],
+  [{ ar: "لبنة جبن", en: "Labneh & Cheese" }, { ar: "لبنة مع جبن موزاريلا", en: "Labneh with mozzarella cheese" }, 13, manLabneh, false],
+  [{ ar: "لبنة زعتر أو زيتون", en: "Labneh with Thyme or Olives" }, { ar: "لبنة مع زعتر أو زيتون", en: "Labneh with thyme or olives" }, 13, manLabneh, false],
+  [{ ar: "مشكل أجبان", en: "Mixed Cheese" }, { ar: "خلطة أجبان مشكلة", en: "Mixed cheese blend" }, 13, manCheese, true],
+  [{ ar: "جبنة شيدر", en: "Cheddar Cheese" }, { ar: "جبنة شيدر ذائبة", en: "Melted cheddar cheese" }, 10, manCheese, false],
+  [{ ar: "جبنة موزاريلا", en: "Mozzarella Cheese" }, { ar: "موزاريلا طازجة", en: "Fresh mozzarella" }, 10, manCheese, false],
+  [{ ar: "لبنة عسل", en: "Labneh & Honey" }, { ar: "لبنة مع عسل طبيعي", en: "Labneh with natural honey" }, 13, manLabneh, false],
+  [{ ar: "جبنة زعتر أو زيتون", en: "Cheese with Thyme or Olives" }, { ar: "جبن مع زعتر أو زيتون", en: "Cheese with thyme or olives" }, 13, manZaatar, false],
+  [{ ar: "نوتيلا", en: "Nutella" }, { ar: "نوتيلا غنية على عجينة طازجة", en: "Rich Nutella on fresh dough" }, 10, manNutella, false],
+  [{ ar: "زعتر سادة", en: "Plain Thyme" }, { ar: "زعتر بلدي وزيت زيتون", en: "Local thyme and olive oil" }, 8, manZaatar, false],
+  [{ ar: "بيض بالجبن", en: "Eggs with Cheese" }, { ar: "بيض طازج مع جبن", en: "Fresh eggs with cheese" }, 13, manCheese, false],
+  [{ ar: "سبانخ", en: "Spinach" }, { ar: "سبانخ بالليمون والبصل", en: "Spinach with lemon and onions" }, 10, manSpinach, false],
+  [{ ar: "سبانخ بالجبن", en: "Spinach with Cheese" }, { ar: "سبانخ مع جبن ذائب", en: "Spinach with melted cheese" }, 13, manSpinach, false],
+  [{ ar: "لحم بالعجين", en: "Meat on Dough (Sfiha)" }, { ar: "لحم بالعجين على الطريقة البلدية", en: "Traditional local meat on dough" }, 10, manMeat, false],
+  [{ ar: "لحم بالجبن", en: "Meat with Cheese" }, { ar: "لحم مع جبن موزاريلا", en: "Meat with mozzarella cheese" }, 13, manMeat, false],
+  [{ ar: "دجاج سادة", en: "Plain Chicken" }, { ar: "دجاج متبل طازج", en: "Fresh marinated chicken" }, 10, manChicken, false],
+  [{ ar: "دجاج بالجبن", en: "Chicken with Cheese" }, { ar: "دجاج مع جبن ذائب", en: "Chicken with melted cheese" }, 13, manChicken, true],
 ];
 
 manakishSeed.forEach(([name, description, price, image, bestSeller], i) => {
@@ -247,17 +249,17 @@ manakishSeed.forEach(([name, description, price, image, bestSeller], i) => {
   });
 });
 
-type SandwichSeed = [string, string, number, string, boolean];
+type SandwichSeed = [LocalizedString, LocalizedString, number, string, boolean];
 
 const sandwichesSeed: SandwichSeed[] = [
-  ["ساندويتش دجاج فاهيتا", "دجاج متبل مع فلفل رومي وبصل وجبن", 15, sandwich, true],
-  ["ساندويتش زنجر", "دجاج مقرمش حار مع خس وصوص خاص", 16, sandwich, true],
-  ["ساندويتش فرانسيسكو", "دجاج، فطر، ذرة، وجبنة موزاريلا ذائبة", 15, sandwich, false],
-  ["ساندويتش حلوم مشوي", "جبنة حلوم مشوية مع طماطم وزعتر وزيتون", 12, sandwich, false],
-  ["ساندويتش كفتة بالجبن", "كفتة مشوية مع جبن وطماطم ومخلل", 14, sandwich, false],
-  ["ساندويتش نقانق", "نقانق مع صوص الخردل والكاتشب والجبن", 12, sandwich, false],
-  ["ساندويتش تونة", "خلطة التونة مع المايونيز والخس الطازج", 13, sandwich, false],
-  ["ساندويتش روست بيف", "شرائح روست بيف مع جبنة شيدر وصوص", 17, sandwich, true],
+  [{ ar: "جبن شيدر", en: "Cheddar Cheese" }, { ar: "ساندويتش جبن شيدر", en: "Cheddar cheese sandwich" }, 0, sandwich, false],
+  [{ ar: "جبن ابيض", en: "White Cheese" }, { ar: "ساندويتش جبن ابيض طازج", en: "Fresh white cheese sandwich" }, 0, sandwich, false],
+  [{ ar: "جبن موزريلا", en: "Mozzarella Cheese" }, { ar: "ساندويتش جبن موزريلا", en: "Mozzarella cheese sandwich" }, 0, sandwich, false],
+  [{ ar: "جبن سائل", en: "Liquid Cheese" }, { ar: "ساندويتش جبن سائل", en: "Liquid cheese sandwich" }, 0, sandwich, false],
+  [{ ar: "لبنه", en: "Labneh" }, { ar: "ساندويتش لبنه", en: "Labneh sandwich" }, 0, sandwich, false],
+  [{ ar: "دجاج", en: "Chicken" }, { ar: "ساندويتش دجاج متبل", en: "Marinated chicken sandwich" }, 0, sandwich, true],
+  [{ ar: "تونة", en: "Tuna" }, { ar: "ساندويتش تونة", en: "Tuna sandwich" }, 0, sandwich, false],
+  [{ ar: "لحم", en: "Meat" }, { ar: "ساندويتش لحم طازج", en: "Fresh meat sandwich" }, 0, sandwich, true],
 ];
 
 sandwichesSeed.forEach(([name, description, price, image, bestSeller], i) => {
@@ -290,9 +292,15 @@ export type Settings = {
 };
 
 export const defaultSettings: Settings = {
-  whatsapp: "",
-  phone: "",
+  whatsapp: "966548392988",
+  phone: "0548392988",
   instagram: "",
   hours: "",
   branches: [],
 };
+
+export function localize(obj: { ar: string; en: string } | string | undefined, lang: string): string {
+  if (!obj) return "";
+  if (typeof obj === "string") return obj;
+  return lang === "ar" ? obj.ar : obj.en;
+}

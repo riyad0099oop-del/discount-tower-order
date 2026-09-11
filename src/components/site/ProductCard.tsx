@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
-import { startingPrice, type Product } from "@/lib/menu-data";
+import { startingPrice, localize, type Product } from "@/lib/menu-data";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export function ProductCard({
   product,
@@ -11,7 +12,10 @@ export function ProductCard({
   onSelect: (p: Product) => void;
   featured?: boolean;
 }) {
+  const { t, i18n } = useTranslation();
   const hasSizes = !!product.sizes?.length;
+  const name = localize(product.name, i18n.language);
+  
   return (
     <article
       onClick={() => onSelect(product)}
@@ -24,13 +28,13 @@ export function ProductCard({
       >
         <img
           src={product.image}
-          alt={product.name}
+          alt={name}
           loading="lazy"
           className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         {product.bestSeller && (
           <span className="absolute end-2 top-2 rounded-full bg-primary/90 px-2 py-0.5 text-[10px] sm:text-xs font-bold text-primary-foreground backdrop-blur-sm shadow-sm">
-            الأكثر طلبًا
+            {t('best_seller')}
           </span>
         )}
       </div>
@@ -42,23 +46,27 @@ export function ProductCard({
           <h3
             className={`font-black text-foreground leading-tight ${featured ? "text-xl sm:text-2xl lg:text-3xl" : "text-sm sm:text-lg"}`}
           >
-            {product.name}
+            {name}
           </h3>
         </div>
 
         <div className="mt-1 sm:mt-2 flex items-end justify-between gap-1">
-          <div className="flex flex-col">
-            {hasSizes && (
-              <span className="text-[9px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
-                يبدأ من
+          {startingPrice(product) > 0 ? (
+            <div className="flex flex-col">
+              {hasSizes && (
+                <span className="text-[9px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
+                  {t('starts_from')}
+                </span>
+              )}
+              <span
+                className={`font-black text-primary ${featured ? "text-xl sm:text-2xl" : "text-base sm:text-xl"}`}
+              >
+                {startingPrice(product)}
               </span>
-            )}
-            <span
-              className={`font-black text-primary ${featured ? "text-xl sm:text-2xl" : "text-base sm:text-xl"}`}
-            >
-              {startingPrice(product)}
-            </span>
-          </div>
+            </div>
+          ) : (
+            <div />
+          )}
           <Button
             size="icon"
             className="size-7 sm:size-10 shrink-0 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all shadow-sm"

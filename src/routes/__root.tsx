@@ -97,9 +97,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import "../i18n";
+import { PizzaLoader } from "../components/PizzaLoader";
+
 function RootShell({ children }: { children: ReactNode }) {
+  const { i18n } = useTranslation();
+  
+  useEffect(() => {
+    document.documentElement.dir = i18n.dir();
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
   return (
-    <html lang="ar" dir="rtl">
+    <html lang={i18n.language} dir={i18n.dir()}>
       <head>
         <HeadContent />
       </head>
@@ -113,11 +125,22 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1800); // Show loader for 1.8 seconds on initial visit
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <StoreProvider>
-        <Outlet />
+        {loading && <PizzaLoader />}
+        <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+          <Outlet />
+        </div>
         <Toaster position="top-center" />
       </StoreProvider>
     </QueryClientProvider>

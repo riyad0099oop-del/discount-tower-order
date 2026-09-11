@@ -60,7 +60,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setProducts(load("dt_products", defaultProducts));
+    setProducts(defaultProducts); // Temporarily ignoring localStorage so code changes show up immediately
     setCategories(load("dt_categories", defaultCategories));
     setSettings(load("dt_settings", defaultSettings));
     setCart(load<CartItem[]>("dt_cart", []));

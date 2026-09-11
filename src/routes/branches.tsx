@@ -52,64 +52,48 @@ function BranchesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:py-16 sm:px-6">
-        {settings.branches.length ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {settings.branches.map((b) => (
-              <div
-                key={b}
-                className="group relative flex flex-col overflow-hidden rounded-[1.25rem] border border-border/30 bg-[#FFFDF8] p-6 shadow-[0_2px_8px_oklch(0.3_0.05_55/0.03)] transition-shadow hover:shadow-[0_8px_24px_oklch(0.3_0.05_55/0.06)]"
-              >
-                <div className="mb-6 flex items-start justify-between">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface text-foreground">
-                    <MapPin className="size-5" />
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-extrabold text-foreground">{b}</h3>
-
-                <div className="mt-4 flex-1 space-y-3 text-sm text-muted-foreground">
-                  {settings.hours && (
-                    <div className="flex items-center gap-3">
-                      <Clock className="size-4 shrink-0 text-olive" />
-                      <span>{settings.hours}</span>
-                    </div>
-                  )}
-                  {settings.phone && (
-                    <div className="flex items-center gap-3">
-                      <Phone className="size-4 shrink-0 text-olive" />
-                      <span dir="ltr" className="text-right">
-                        {settings.phone}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-8 flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center rounded-xl border border-border/60 bg-transparent py-2.5 text-sm font-bold text-foreground transition-colors hover:bg-surface">
-                    <Navigation className="mr-2 size-4" />
-                    الاتجاهات
-                  </button>
-                  <Link
-                    to="/"
-                    className="flex-1 inline-flex items-center justify-center rounded-xl bg-primary py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90"
-                  >
-                    الطلب من هنا
-                  </Link>
-                </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="group relative flex flex-col overflow-hidden rounded-[1.25rem] border border-border/30 bg-[#FFFDF8] p-6 shadow-[0_2px_8px_oklch(0.3_0.05_55/0.03)] transition-shadow hover:shadow-[0_8px_24px_oklch(0.3_0.05_55/0.06)]">
+            <div className="mb-6 flex items-start justify-between">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface text-foreground">
+                <MapPin className="size-5" />
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="mx-auto my-8 max-w-md rounded-3xl border border-border/50 bg-[#FFFDF8] p-10 text-center shadow-[0_2px_10px_oklch(0.3_0.05_55/0.02)]">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-surface text-olive">
-              <MapPin className="size-8" />
             </div>
-            <h2 className="mt-6 text-xl font-bold text-foreground">بيانات الفروع ستظهر هنا</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              يمكن إضافة الفروع وساعات العمل من صفحة الإعدادات في لوحة التحكم.
-            </p>
+
+            <h3 className="text-xl font-extrabold text-foreground">الفرع الأول والرئيسي</h3>
+
+            <div className="mt-4 flex-1 space-y-3 text-sm text-muted-foreground">
+              <p className="leading-relaxed">
+                مكة المكرمة بمنطقة العزيزية الشمالية، على الشارع العام (بجوار إشارة برج التخفيضات).
+              </p>
+              <div className="flex items-center gap-3">
+                <Clock className="size-4 shrink-0 text-olive" />
+                <span>الدوام من 8 صباح لـ 2 بعد منتصف الليل</span>
+              </div>
+              {settings.phone && (
+                <div className="flex items-center gap-3">
+                  <Phone className="size-4 shrink-0 text-olive" />
+                  <span dir="ltr" className="text-right">
+                    {settings.phone}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-8 flex gap-3">
+              <button className="flex-1 inline-flex items-center justify-center rounded-xl border border-border/60 bg-transparent py-2.5 text-sm font-bold text-foreground transition-colors hover:bg-surface">
+                <Navigation className="mr-2 size-4" />
+                الاتجاهات
+              </button>
+              <Link
+                to="/"
+                className="flex-1 inline-flex items-center justify-center rounded-xl bg-primary py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                الطلب من هنا
+              </Link>
+            </div>
           </div>
-        )}
+        </div>
       </section>
 
       {/* CTA Section */}

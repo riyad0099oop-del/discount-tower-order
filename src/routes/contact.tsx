@@ -8,10 +8,10 @@ import {
   Leaf,
   Circle,
   Sparkles,
-  Send,
+  MapPin,
+  Facebook,
 } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
-import { useStore } from "@/lib/store";
 import pizzaSpecial from "@/assets/pizza-special.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -29,16 +29,13 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.13 4.54-3.15 5.76-2.02 1.22-4.7 1.34-6.83.33-2.13-1.01-3.69-3.04-3.99-5.38-.3-2.34.42-4.8 2.08-6.42 1.66-1.61 4.13-2.32 6.4-1.95v4.06c-1.39-.23-2.92-.04-4.09.81-1.17.85-1.74 2.38-1.5 3.81.24 1.43 1.36 2.65 2.75 3.12 1.39.47 3.03.3 4.23-.55 1.2-.85 1.83-2.3 1.79-3.79-.06-3.82-.01-7.64-.01-11.46Z"/>
+  </svg>
+);
+
 function ContactPage() {
-  const { settings } = useStore();
-
-  const hasAnyContactData = !!(
-    settings.phone ||
-    settings.whatsapp ||
-    settings.instagram ||
-    settings.hours
-  );
-
   return (
     <Layout>
       {/* Mini Hero */}
@@ -74,7 +71,7 @@ function ContactPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:py-16 sm:px-6">
-        <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-start">
           {/* Left Side: Image & Text */}
           <div className="relative">
             <div className="absolute -left-6 -top-6 h-48 w-48 rounded-full bg-olive/10 blur-3xl hidden sm:block"></div>
@@ -95,99 +92,91 @@ function ContactPage() {
 
           {/* Right Side: Contact Panel */}
           <div className="rounded-[2rem] border border-border/30 bg-[#FFFDF8] p-6 sm:p-12 shadow-[0_8px_30px_oklch(0.3_0.05_55/0.04)]">
-            {!hasAnyContactData ? (
-              <div className="text-center py-10">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-surface text-olive">
-                  <Send className="size-8" />
-                </div>
-                <h2 className="mt-6 text-xl font-bold text-foreground">بيانات التواصل ستظهر هنا</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  سيتم إضافة أرقام التواصل وحسابات السوشيال ميديا قريباً.
+            <div className="space-y-6 sm:space-y-8">
+              <div>
+                <h2 className="text-2xl font-extrabold text-foreground">كيف يمكننا مساعدتك؟</h2>
+                <p className="mt-2 text-muted-foreground">
+                  تواصل معنا عبر القنوات التالية وسنرد عليك في أقرب وقت.
                 </p>
               </div>
-            ) : (
-              <div className="space-y-6 sm:space-y-8">
-                <div>
-                  <h2 className="text-2xl font-extrabold text-foreground">كيف يمكننا مساعدتك؟</h2>
-                  <p className="mt-2 text-muted-foreground">
-                    تواصل معنا عبر القنوات التالية وسنرد عليك في أقرب وقت.
-                  </p>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {/* WhatsApp - Primary */}
+                <a
+                  href={`https://wa.me/966548392988`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl bg-[#25D366]/10 p-5 transition-colors hover:bg-[#25D366]/20"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#25D366] text-white shadow-sm transition-transform group-hover:scale-105">
+                    <MessageCircle className="size-6" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium text-[#1DA851]">واتساب</p>
+                    <p className="truncate text-lg font-bold text-foreground" dir="ltr">
+                      054 839 2988
+                    </p>
+                  </div>
+                </a>
+
+                {/* Phone - Secondary */}
+                <a
+                  href={`tel:0548392988`}
+                  className="group col-span-1 flex items-center gap-4 rounded-2xl border border-border/50 bg-white p-4 transition-shadow hover:shadow-soft"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Phone className="size-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-muted-foreground">رقم التواصل</p>
+                    <p className="truncate font-bold text-foreground" dir="ltr">
+                      054 839 2988
+                    </p>
+                  </div>
+                </a>
+
+                {/* Branch Info */}
+                <div className="group col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl border border-border/50 bg-white p-4 transition-shadow hover:shadow-soft">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-olive/10 text-olive">
+                    <MapPin className="size-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-medium text-muted-foreground">الفرع الرئيسي</p>
+                    <p className="text-sm font-bold text-foreground leading-relaxed">
+                      مكة المكرمة بمنطقة العزيزية الشمالية، على الشارع العام (بجوار إشارة برج التخفيضات).
+                    </p>
+                  </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {/* WhatsApp - Primary */}
-                  {settings.whatsapp && (
-                    <a
-                      href={`https://wa.me/${settings.whatsapp}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl bg-[#25D366]/10 p-5 transition-colors hover:bg-[#25D366]/20"
-                    >
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#25D366] text-white shadow-sm transition-transform group-hover:scale-105">
-                        <MessageCircle className="size-6" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-medium text-[#1DA851]">واتساب</p>
-                        <p className="truncate text-lg font-bold text-foreground" dir="ltr">
-                          {settings.whatsapp}
-                        </p>
-                      </div>
-                    </a>
-                  )}
-
-                  {/* Phone - Secondary */}
-                  {settings.phone && (
-                    <a
-                      href={`tel:${settings.phone}`}
-                      className="group flex items-center gap-4 rounded-2xl border border-border/50 bg-white p-4 transition-shadow hover:shadow-soft"
-                    >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        <Phone className="size-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-xs font-medium text-muted-foreground">رقم التواصل</p>
-                        <p className="truncate font-bold text-foreground" dir="ltr">
-                          {settings.phone}
-                        </p>
-                      </div>
-                    </a>
-                  )}
-
-                  {/* Instagram - Social */}
-                  {settings.instagram && (
-                    <a
-                      href={`https://instagram.com/${settings.instagram}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group flex items-center gap-4 rounded-2xl border border-border/50 bg-white p-4 transition-shadow hover:shadow-soft"
-                    >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#E1306C]/10 text-[#E1306C]">
-                        <Instagram className="size-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-xs font-medium text-muted-foreground">إنستقرام</p>
-                        <p className="truncate font-bold text-foreground" dir="ltr">
-                          @{settings.instagram}
-                        </p>
-                      </div>
-                    </a>
-                  )}
-
-                  {/* Hours - Info */}
-                  {settings.hours && (
-                    <div className="col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl bg-surface/50 p-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background text-olive">
-                        <Clock className="size-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-xs font-medium text-muted-foreground">ساعات العمل</p>
-                        <p className="font-bold text-foreground">{settings.hours}</p>
-                      </div>
-                    </div>
-                  )}
+                {/* Hours - Info */}
+                <div className="col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl bg-surface/50 p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background text-olive">
+                    <Clock className="size-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-muted-foreground">ساعات العمل</p>
+                    <p className="font-bold text-foreground">من 8 صباحاً إلى 2 بعد منتصف الليل</p>
+                  </div>
                 </div>
               </div>
-            )}
+
+              {/* Social Media Row */}
+              <div className="pt-6 border-t border-border/50">
+                <p className="text-sm font-medium text-center text-muted-foreground mb-4">تابعنا على منصات التواصل الاجتماعي</p>
+                <div className="flex justify-center gap-4">
+                  <a href="https://www.tiktok.com/@d.t.ksa1?_r=1&_t=ZS-98pOm8OfChr" target="_blank" rel="noopener noreferrer" className="grid size-12 place-items-center rounded-xl bg-black text-white hover:scale-110 transition-transform shadow-sm">
+                    <TikTokIcon className="size-6" />
+                  </a>
+                  <a href="https://www.instagram.com/d.t.ksa1?igsh=MTJvYWh5OGY4c2k5eg==" target="_blank" rel="noopener noreferrer" className="grid size-12 place-items-center rounded-xl bg-gradient-to-tr from-[#fd5949] to-[#d6249f] text-white hover:scale-110 transition-transform shadow-sm">
+                    <Instagram className="size-6" />
+                  </a>
+                  <a href="https://www.facebook.com/share/1DNqkQgg3T/" target="_blank" rel="noopener noreferrer" className="grid size-12 place-items-center rounded-xl bg-[#1877F2] text-white hover:scale-110 transition-transform shadow-sm">
+                    <Facebook className="size-6" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>

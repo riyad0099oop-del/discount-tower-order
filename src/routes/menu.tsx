@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FlourDecor, TomatoDecor, BasilDecor } from "@/components/site/Decorations";
 import { Layout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ProductSheet } from "@/components/site/ProductSheet";
 import { Input } from "@/components/ui/input";
 import type { Product } from "@/lib/menu-data";
+import { localize } from "@/lib/menu-data";
 import { useStore } from "@/lib/store";
 
 type MenuSearch = { cat?: string | undefined };
@@ -35,6 +37,9 @@ function MenuPage() {
   const { products, categories } = useStore();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Product | null>(null);
+  
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const activeCats = categories.filter((c) => c.active);
   const current = cat ?? activeCats[0]?.id ?? "pizza";
@@ -44,9 +49,11 @@ function MenuPage() {
       products.filter(
         (p) =>
           p.active &&
-          (!query.trim() || p.name.includes(query.trim()) || p.description.includes(query.trim())),
+          (!query.trim() || 
+           localize(p.name, lang).includes(query.trim()) || 
+           localize(p.description, lang).includes(query.trim())),
       ),
-    [products, query],
+    [products, query, lang],
   );
 
   return (
@@ -58,17 +65,17 @@ function MenuPage() {
         <TomatoDecor className="absolute top-1/2 end-[20%] size-32 text-primary opacity-15 -translate-y-1/2 -rotate-12 pointer-events-none hidden lg:block" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 z-10 text-center">
-          <h1 className="text-4xl sm:text-5xl font-black text-foreground">المنيو</h1>
+          <h1 className="text-4xl sm:text-5xl font-black text-foreground">{t('menu_title')}</h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-            اختر طلبك المفضل وخصصه بالطريقة التي تحبها.
+            {t('menu_desc')}
           </p>
           <div className="relative mt-8 max-w-lg mx-auto">
-            <Search className="pointer-events-none absolute end-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
+            <Search className={`pointer-events-none absolute top-1/2 size-5 -translate-y-1/2 text-muted-foreground ${lang === 'ar' ? 'end-4' : 'start-4'}`} />
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="ابحث عن منتج..."
-              className="h-14 rounded-full border-border/50 bg-card pe-12 text-lg shadow-sm focus-visible:ring-primary"
+              placeholder={t('search_placeholder')}
+              className={`h-14 rounded-full border-border/50 bg-card text-lg shadow-sm focus-visible:ring-primary ${lang === 'ar' ? 'pe-12' : 'ps-12'}`}
             />
           </div>
         </div>
@@ -87,7 +94,7 @@ function MenuPage() {
                   : "border-border/50 bg-card text-foreground hover:border-primary/50"
               }`}
             >
-              {c.name}
+              {localize(c.name, lang)}
             </button>
           ))}
         </div>
@@ -95,15 +102,16 @@ function MenuPage() {
 
       {/* Product Grid */}
       <div className="mx-auto max-w-7xl space-y-12 px-3 py-10 sm:px-6">
-        {activeCats.map((c) => {
-          const items = filtered.filter((p) => p.category === c.id);
-          if (!items.length) return null;
+        {activeCats
+          .filter((c) => c.id === current)
+          .map((c) => {
+            const items = filtered.filter((p) => p.category === c.id);
+            if (!items.length) return null;
           return (
             <section key={c.id} id={c.id} className="scroll-mt-32">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-black text-foreground">{c.name}</h2>
+              <h2 className="mb-6 text-2xl sm:text-3xl font-black text-foreground">{localize(c.name, lang)}</h2>
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                 {items.map((p, idx) => {
-                  // On desktop, first item is featured (wide). On mobile keep 2-col uniform.
                   const isFeatured =
                     idx === 0 &&
                     !query.trim() &&
@@ -123,7 +131,7 @@ function MenuPage() {
         })}
         {filtered.length === 0 && (
           <div className="py-20 text-center">
-            <p className="text-xl text-muted-foreground">لا توجد نتائج مطابقة للبحث.</p>
+            <p className="text-xl text-muted-foreground">{t('no_results')}</p>
           </div>
         )}
       </div>

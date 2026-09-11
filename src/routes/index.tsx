@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Plus } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import heroPizza from "@/assets/hero-pizza.jpg";
 import promoSlice from "@/assets/promo-slice.jpg";
 import {
@@ -16,7 +17,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { ProductSheet } from "@/components/site/ProductSheet";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/lib/menu-data";
-import { startingPrice } from "@/lib/menu-data";
+import { startingPrice, localize } from "@/lib/menu-data";
 import { useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/")({
@@ -35,6 +36,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const { products, categories } = useStore();
   const [selected, setSelected] = useState<Product | null>(null);
 
@@ -78,11 +81,11 @@ function Index() {
           {/* Text Content */}
           <div className="relative z-30 flex flex-col justify-center text-center lg:text-start order-2 lg:order-1 lg:pe-8 mt-2 lg:mt-0">
             <h1 className="text-4xl leading-[1.2] font-black sm:text-5xl lg:text-[4.2rem] lg:leading-[1.15] text-[#3c2f25] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              الطعم الذي <br className="hidden lg:block" />
-              <span className="text-primary">يستاهل</span> ترجع له
+              {t('hero_title_1')} <br className="hidden lg:block" />
+              <span className="text-primary">{t('hero_title_highlight')}</span> {t('hero_title_2')}
             </h1>
             <p className="mt-3 lg:mt-5 text-[1.05rem] md:text-[1.2rem] leading-[1.6] text-[#7a6f65] max-w-[320px] lg:max-w-[360px] mx-auto lg:mx-0 font-medium animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150">
-              بيتزا ومناقيش طازجة، نجهزها لك بالمذاق الذي تحبه وبكل اهتمام.
+              {t('hero_desc')}
             </p>
             <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 lg:gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
               <Button
@@ -90,7 +93,7 @@ function Index() {
                 size="lg"
                 className="h-[3.5rem] lg:h-[3.75rem] w-full sm:w-auto rounded-full bg-primary px-8 lg:px-10 text-[1.05rem] lg:text-[1.1rem] font-bold text-white transition-all hover:scale-[1.02] hover:bg-primary/95 shadow-lg shadow-primary/20 border-0"
               >
-                <Link to="/menu">اطلب الآن</Link>
+                <Link to="/menu">{t('order_now')}</Link>
               </Button>
               <Button
                 asChild
@@ -98,7 +101,7 @@ function Index() {
                 variant="outline"
                 className="h-[3.5rem] lg:h-[3.75rem] w-full sm:w-auto rounded-full border-2 border-[#5c4f45]/20 bg-transparent px-8 lg:px-10 text-[1.05rem] lg:text-[1.1rem] font-bold text-[#3c2f25] transition-all hover:bg-[#3c2f25]/5 hover:border-[#3c2f25]/30"
               >
-                <Link to="/menu">استعرض المنيو</Link>
+                <Link to="/menu">{t('explore_menu')}</Link>
               </Button>
             </div>
           </div>
@@ -141,7 +144,7 @@ function Index() {
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 z-10">
             <div className="mb-8 lg:mb-14 text-center lg:text-start">
               <h2 className="text-3xl lg:text-5xl font-black text-foreground tracking-tight">
-                اختيارات البرج
+                {t('tower_picks')}
               </h2>
             </div>
             <div className="grid lg:grid-cols-12 gap-5 lg:gap-8">
@@ -153,16 +156,16 @@ function Index() {
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden bg-cream">
                   <img
                     src={featuredSignature.image}
-                    alt={featuredSignature.name}
+                    alt={localize(featuredSignature.name, lang)}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-cocoa/95 via-cocoa/40 to-transparent flex flex-col justify-end p-6 lg:p-10 text-cocoa-foreground">
-                  <h3 className="text-2xl sm:text-4xl font-black">{featuredSignature.name}</h3>
+                  <h3 className="text-2xl sm:text-4xl font-black">{localize(featuredSignature.name, lang)}</h3>
                   <div className="mt-3 lg:mt-5 flex items-end justify-between">
                     <div>
                       <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-cocoa-foreground/80">
-                        يبدأ من
+                        {t('starts_from')}
                       </span>
                       <span className="block text-2xl sm:text-4xl font-black text-primary mt-1">
                         {startingPrice(featuredSignature)}
@@ -172,7 +175,7 @@ function Index() {
                       size="lg"
                       className="rounded-full bg-primary text-primary-foreground font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform pointer-events-none"
                     >
-                      اطلب الآن
+                      {t('order_now')}
                     </Button>
                   </div>
                 </div>
@@ -189,16 +192,16 @@ function Index() {
                     <div className="relative w-full sm:w-2/5 lg:w-full xl:w-2/5 aspect-[4/3] sm:aspect-auto lg:aspect-[4/3] xl:aspect-auto overflow-hidden bg-cream">
                       <img
                         src={p.image}
-                        alt={p.name}
+                        alt={localize(p.name, lang)}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>
                     <div className="flex flex-1 flex-col justify-center p-5 lg:p-8">
-                      <h3 className="text-xl lg:text-2xl font-black text-foreground">{p.name}</h3>
+                      <h3 className="text-xl lg:text-2xl font-black text-foreground">{localize(p.name, lang)}</h3>
                       <div className="mt-3 lg:mt-4 flex items-end justify-between">
                         <div>
                           <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                            يبدأ من
+                            {t('starts_from')}
                           </span>
                           <span className="block text-xl lg:text-2xl font-black text-primary mt-1">
                             {startingPrice(p)}
@@ -224,8 +227,8 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 z-10">
           {/* Section Title */}
           <div className="mb-6 lg:mb-10 text-center">
-            <h2 className="text-2xl lg:text-4xl font-black text-foreground">اختر من</h2>
-            <p className="mt-2 text-muted-foreground text-sm lg:text-base">اضغط للاستكشاف</p>
+            <h2 className="text-2xl lg:text-4xl font-black text-foreground">{t('choose_from')}</h2>
+            <p className="mt-2 text-muted-foreground text-sm lg:text-base">{t('click_to_explore')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-8">
             {activeCategories.map((c) => {
@@ -246,7 +249,7 @@ function Index() {
                 >
                   <img
                     src={c.image}
-                    alt={c.name}
+                    alt={localize(c.name, lang)}
                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
                       isActive
                         ? "opacity-100 mix-blend-normal scale-[1.02]"
@@ -270,7 +273,7 @@ function Index() {
                     <h3
                       className={`text-3xl sm:text-5xl font-black mb-4 lg:mb-6 drop-shadow-xl transition-transform duration-500 ${isActive ? "scale-110" : ""}`}
                     >
-                      {c.name}
+                      {localize(c.name, lang)}
                     </h3>
                     <span
                       className={`flex items-center gap-2 rounded-full px-6 lg:px-8 py-3 lg:py-4 text-sm lg:text-base font-bold backdrop-blur-md transition-all duration-300 shadow-xl border ${
@@ -279,8 +282,8 @@ function Index() {
                           : "bg-white/10 border-white/20 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-105 group-hover:border-primary"
                       }`}
                     >
-                      {isActive ? "اضغط للدخول" : "استكشف"}{" "}
-                      <ArrowLeft className="size-4 lg:size-5" />
+                      {isActive ? t('click_to_enter') : t('explore')}{" "}
+                      <ArrowLeft className={`size-4 lg:size-5 ${i18n.dir() === 'ltr' ? 'rotate-180' : ''}`} />
                     </span>
                   </div>
                 </Link>
@@ -298,7 +301,7 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 z-10">
           <div className="mb-8 lg:mb-12 flex flex-col items-center text-center">
             <h2 className="text-3xl lg:text-5xl font-black text-foreground mb-6 lg:mb-8">
-              من المنيو
+              {t('from_menu')}
             </h2>
             <div className="flex w-full sm:w-auto items-center gap-2 rounded-[2rem] bg-card p-2 border border-border/60 shadow-sm overflow-x-auto no-scrollbar">
               {activeCategories.map((c) => (
@@ -311,7 +314,7 @@ function Index() {
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
-                  {c.name}
+                  {localize(c.name, lang)}
                 </button>
               ))}
             </div>
@@ -331,50 +334,13 @@ function Index() {
               className="h-12 lg:h-14 rounded-full border-foreground/20 px-8 lg:px-10 text-base lg:text-lg font-bold text-foreground hover:bg-foreground/5 hover:border-foreground/40 transition-colors"
             >
               <Link to="/menu" search={{ cat: activeTab }}>
-                عرض المنيو كاملًا
+                {t('view_full_menu')}
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* 5. Full-width Offer Banner */}
-      <section className="bg-cocoa text-cocoa-foreground overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-0 relative">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-25 mix-blend-overlay pointer-events-none" />
-
-          <BasilDecor className="absolute bottom-10 start-[45%] size-24 text-white opacity-15 -rotate-45 pointer-events-none hidden lg:block" />
-          <FlourDecor className="absolute top-10 start-[10%] size-32 text-white opacity-20 pointer-events-none hidden lg:block" />
-
-          <div className="grid items-center lg:grid-cols-2 gap-8 lg:gap-12 relative z-10">
-            <div className="flex flex-col justify-center py-6 lg:py-28 text-center lg:text-start">
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-white">
-                عروض <span className="text-primary">تستاهل</span> التجربة
-              </h2>
-              <p className="mt-4 lg:mt-6 text-base lg:text-xl text-cocoa-foreground/80 max-w-md leading-relaxed mx-auto lg:mx-0">
-                اكتشف عروض برج التخفيضات وخيارات تناسب كل طلب، لتستمتع بأفضل مذاق بأفضل قيمة.
-              </p>
-              <div className="mt-8 lg:mt-10">
-                <Button
-                  asChild
-                  size="lg"
-                  className="h-14 lg:h-16 rounded-full bg-primary px-10 lg:px-12 text-lg lg:text-xl font-bold text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-transform shadow-xl shadow-primary/20"
-                >
-                  <Link to="/offers">شاهد العروض</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="relative h-48 sm:h-96 lg:h-full w-full block">
-              <img
-                src={promoSlice}
-                alt="شريحة بيتزا ساخنة"
-                className="absolute inset-0 w-full h-full object-cover lg:object-contain object-center lg:object-right lg:scale-[1.3] lg:origin-right transition-transform duration-1000 hover:scale-[1.35]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-cocoa/60 via-transparent to-transparent lg:hidden" />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 6. Brand Story */}
       <section className="relative py-16 lg:py-28 bg-cream overflow-hidden">
@@ -393,21 +359,21 @@ function Index() {
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center text-center lg:text-start">
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-foreground leading-tight">
-                الفرق يبدأ من التفاصيل
+                {t('brand_story_title')}
               </h2>
               <div className="mt-8 lg:mt-12 space-y-6 lg:space-y-10 text-start">
                 {[
                   {
-                    title: "مكونات طازجة",
-                    desc: "نختار الخضروات والأجبان يوميًا بأعلى معايير الجودة لنضمن لك طعماً أصيلاً.",
+                    title: t('fresh_ingredients'),
+                    desc: t('fresh_ingredients_desc'),
                   },
                   {
-                    title: "تحضير يومي",
-                    desc: "عجينتنا تُعجن وتُخبز يوميًا، لتصلك هشة، ساخنة ولذيذة في كل طلب.",
+                    title: t('daily_prep'),
+                    desc: t('daily_prep_desc'),
                   },
                   {
-                    title: "خيارات تناسب الجميع",
-                    desc: "من البيتزا الكلاسيكية إلى المناقيش المتنوعة، صممنا منيو يرضي كل الأذواق.",
+                    title: t('for_everyone'),
+                    desc: t('for_everyone_desc'),
                   },
                 ].map((item, idx) => (
                   <div
@@ -444,17 +410,17 @@ function Index() {
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-olive/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none hidden lg:block" />
             <div className="relative z-10">
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-foreground">
-                طلبك أقرب مما تتوقع
+                {t('cta_title')}
               </h2>
               <p className="mt-4 lg:mt-6 text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                اختر طلبك المفضل، أضفه للسلة، وخلي الباقي علينا. تجربة سهلة وسريعة.
+                {t('cta_desc')}
               </p>
               <Button
                 asChild
                 size="lg"
                 className="mt-8 lg:mt-12 h-14 lg:h-16 rounded-full bg-primary px-12 lg:px-16 text-lg lg:text-xl font-bold text-primary-foreground hover:scale-105 transition-transform shadow-xl shadow-primary/25"
               >
-                <Link to="/menu">اطلب الآن</Link>
+                <Link to="/menu">{t('order_now')}</Link>
               </Button>
             </div>
           </div>

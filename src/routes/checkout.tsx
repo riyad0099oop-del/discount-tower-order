@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
+import bankQr from "@/assets/bank-qr.jpg";
 import { Layout, PageHeader } from "@/components/site/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useStore } from "@/lib/store";
+import { localize } from "@/lib/menu-data";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -22,6 +25,8 @@ export const Route = createFileRoute("/checkout")({
 
 function CheckoutPage() {
   const { cart, cartTotal, settings, clearCart } = useStore();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [method, setMethod] = useState<"delivery" | "pickup">("delivery");
@@ -41,10 +46,6 @@ function CheckoutPage() {
       toast.error("الرجاء إدخال العنوان");
       return;
     }
-    if (!settings.whatsapp.trim()) {
-      toast.error("رقم واتساب المطعم غير مُعد بعد. يمكن ضبطه من لوحة التحكم.");
-      return;
-    }
 
     const lines: string[] = [
       "طلب جديد - بيتزا برج التخفيضات",
@@ -55,8 +56,8 @@ function CheckoutPage() {
       "الطلبات:",
     ];
     cart.forEach((i) => {
-      lines.push(`${i.qty} × ${i.name}`);
-      if (i.sizeLabel) lines.push(`الحجم: ${i.sizeLabel}`);
+      lines.push(`${i.qty} × ${localize(i.name, lang)}`);
+      if (i.sizeLabel) lines.push(`الحجم: ${localize(i.sizeLabel, lang)}`);
       if (i.notes) lines.push(`ملاحظة: ${i.notes}`);
       lines.push(`السعر: ${i.unitPrice * i.qty}`);
       lines.push("");
@@ -71,8 +72,12 @@ function CheckoutPage() {
     }
     if (orderNotes) lines.push(`الملاحظات: ${orderNotes}`);
     lines.push("", `الإجمالي: ${cartTotal}`);
+    
+    if (method === "delivery") {
+      lines.push("", "ملاحظة: رسوم التوصيل محسوبة على العميل.");
+    }
 
-    const num = settings.whatsapp.replace(/[^0-9]/g, "");
+    const num = "966548392988";
     window.open(`https://wa.me/${num}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
     clearCart();
     toast.success("تم تجهيز رسالة الطلب على واتساب");
@@ -83,9 +88,9 @@ function CheckoutPage() {
       <Layout>
         <PageHeader title="إتمام الطلب" />
         <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
-          <p className="text-muted-foreground">سلتك فارغة حاليًا.</p>
+          <p className="text-muted-foreground">{t('cart_empty')}</p>
           <Button asChild className="mt-6 rounded-full">
-            <Link to="/menu">تصفح المنيو</Link>
+            <Link to="/menu">{t('explore_menu')}</Link>
           </Button>
         </div>
       </Layout>
@@ -206,25 +211,14 @@ function CheckoutPage() {
               <Label className="font-bold text-muted-foreground uppercase tracking-widest text-xs mb-3 block">
                 اختر الفرع
               </Label>
-              {settings.branches.length ? (
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {settings.branches.map((b) => (
-                    <button
-                      key={b}
-                      onClick={() => setBranch(b)}
-                      className={`rounded-2xl border-2 p-4 font-black transition-all duration-200 ${
-                        branch === b
-                          ? "border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary"
-                          : "border-border/50 bg-card hover:border-primary/30 hover:bg-primary/5"
-                      }`}
-                    >
-                      {b}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-2 text-sm text-muted-foreground">لم تُضف الفروع بعد.</p>
-              )}
+              <div className="grid gap-3 sm:grid-cols-2">
+                  <button
+                    onClick={() => setBranch("الفرع الأول والرئيسي")}
+                    className={`rounded-2xl border-2 p-4 font-black transition-all duration-200 border-primary bg-primary/5 shadow-sm scale-[1.02] text-primary`}
+                  >
+                    الفرع الأول والرئيسي
+                  </button>
+              </div>
             </div>
           )}
 
@@ -244,45 +238,65 @@ function CheckoutPage() {
           </div>
         </div>
 
-        <aside className="h-fit space-y-6 rounded-[2.5rem] bg-cream p-8 shadow-sm lg:sticky lg:top-28 border border-border/50">
-          <h2 className="text-2xl font-black text-foreground">ملخص الطلب</h2>
-          <ul className="space-y-4">
-            {cart.map((i) => (
-              <li key={i.key} className="flex justify-between gap-4 text-base">
-                <span className="min-w-0">
-                  <span className="block font-bold">
-                    {i.qty} × {i.name}
-                  </span>
-                  {i.sizeLabel && (
-                    <span className="text-sm text-muted-foreground font-medium mt-0.5 block">
-                      الحجم: {i.sizeLabel}
+        <aside className="h-fit space-y-6 lg:sticky lg:top-28">
+          <div className="space-y-6 rounded-[2.5rem] bg-cream p-8 shadow-sm border border-border/50">
+            <h2 className="text-2xl font-black text-foreground">ملخص الطلب</h2>
+            <ul className="space-y-4">
+              {cart.map((i) => (
+                <li key={i.key} className="flex justify-between gap-4 text-base">
+                  <span className="min-w-0">
+                    <span className="block font-bold">
+                      {i.qty} × {localize(i.name, lang)}
                     </span>
-                  )}
-                </span>
-                <span className="font-black text-primary whitespace-nowrap">
-                  {i.unitPrice * i.qty} <span className="text-xs text-muted-foreground">ر.س</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div className="flex justify-between border-t-2 border-border/50 pt-5 text-xl font-black text-foreground">
-            <span>الإجمالي</span>
-            <span className="text-primary">
-              {cartTotal} <span className="text-sm">ر.س</span>
-            </span>
+                    {i.sizeLabel && (
+                      <span className="text-sm text-muted-foreground font-medium mt-0.5 block">
+                        الحجم: {localize(i.sizeLabel, lang)}
+                      </span>
+                    )}
+                  </span>
+                  <span className="font-black text-primary whitespace-nowrap">
+                    {i.unitPrice * i.qty} <span className="text-xs text-muted-foreground">{t('sar')}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            
+            {method === "delivery" && (
+              <div className="mt-4 rounded-xl bg-orange-50 p-4 border border-orange-100 text-orange-800 text-sm font-bold text-center">
+                ملاحظة: رسوم التوصيل محسوبة على العميل وتُدفع للمندوب.
+              </div>
+            )}
+            
+            <div className="flex justify-between border-t-2 border-border/50 pt-5 text-xl font-black text-foreground">
+              <span>{t('total')}</span>
+              <span className="text-primary">
+                {cartTotal} <span className="text-sm">{t('sar')}</span>
+              </span>
+            </div>
+            
+            <Button
+              size="lg"
+              className="h-16 w-full rounded-full bg-primary text-xl font-black text-primary-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-primary/20 mt-4"
+              onClick={submit}
+            >
+              تأكيد الطلب عبر الواتساب
+            </Button>
           </div>
-          <Button
-            size="lg"
-            className="h-16 w-full rounded-full bg-primary text-xl font-black text-primary-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-primary/20 mt-4"
-            onClick={submit}
-          >
-            تأكيد الطلب
-          </Button>
-          {!settings.whatsapp && (
-            <p className="text-center text-xs text-muted-foreground mt-4">
-              أضف رقم واتساب المطعم من لوحة التحكم لتفعيل الإرسال.
-            </p>
-          )}
+
+          {/* Bank Account Section */}
+          <div className="space-y-4 rounded-[2.5rem] bg-surface p-6 shadow-sm border border-border/50 text-center">
+            <h3 className="font-black text-lg">التحويل البنكي الدفع الالكتروني قريبا </h3>
+            <img 
+              src={bankQr} 
+              alt="QR Code" 
+              className="mx-auto w-48 h-48 object-contain rounded-xl border border-border/30 p-2 bg-white"
+            />
+            <div className="space-y-2 text-sm">
+              <p><span className="text-muted-foreground">الاسم:</span> <strong className="block text-base">رياض عبدالله علي احمد الظاهري</strong></p>
+              <p><span className="text-muted-foreground">رقم الحساب:</span> <strong className="block font-mono text-base">077040010006081097569</strong></p>
+              <p><span className="text-muted-foreground">رقم الآيبان:</span> <strong className="block font-mono text-xs sm:text-sm">SA95 8000 0859 6080 1109 7569</strong></p>
+            </div>
+          </div>
         </aside>
       </div>
     </Layout>
