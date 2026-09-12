@@ -51,6 +51,15 @@ function load<T>(key: string, fallback: T): T {
   }
 }
 
+function save(key: string, value: unknown) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Ignore if localStorage is blocked
+  }
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(defaultProducts);
   const [categories, setCategories] = useState<Category[]>(defaultCategories);
@@ -68,10 +77,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (ready) localStorage.setItem("dt_settings", JSON.stringify(settings));
+    if (ready) save("dt_settings", settings);
   }, [settings, ready]);
   useEffect(() => {
-    if (ready) localStorage.setItem("dt_cart", JSON.stringify(cart));
+    if (ready) save("dt_cart", cart);
   }, [cart, ready]);
 
   const value = useMemo<StoreValue>(() => {
