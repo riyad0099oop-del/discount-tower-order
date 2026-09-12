@@ -1,4 +1,8 @@
-export function renderErrorPage(): string {
+export function renderErrorPage(errorDetails?: string): string {
+  const errorHtml = errorDetails 
+    ? `<div style="margin-top: 2rem; padding: 1rem; background: #fee2e2; color: #991b1b; text-align: left; border-radius: 0.375rem; overflow-x: auto; font-family: monospace; font-size: 12px; white-space: pre-wrap; direction: ltr;">${errorDetails.replace(/</g, "&lt;")}</div>`
+    : "";
+
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -24,6 +28,7 @@ export function renderErrorPage(): string {
         <button class="primary" onclick="location.reload()">Try again</button>
         <a class="secondary" href="/">Go home</a>
       </div>
+      ${errorHtml}
     </div>
   </body>
 </html>`;

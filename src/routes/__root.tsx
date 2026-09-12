@@ -97,21 +97,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-import { useTranslation } from "react-i18next";
+import { useTranslation, I18nextProvider } from "react-i18next";
 import { useState } from "react";
-import "../i18n";
+import i18n from "../i18n";
 import { PizzaLoader } from "../components/PizzaLoader";
 
 function RootShell({ children }: { children: ReactNode }) {
-  const { i18n } = useTranslation();
+  const { i18n: i18nInstance } = useTranslation();
   
+  // fallback to imported i18n if context instance is not fully initialized during SSR
+  const language = i18nInstance?.language || i18n.language || 'ar';
+  const dir = (i18nInstance?.dir ? i18nInstance.dir(language) : (i18n.dir ? i18n.dir(language) : 'rtl'));
+
   useEffect(() => {
-    document.documentElement.dir = i18n.dir();
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+    document.documentElement.dir = dir;
+    document.documentElement.lang = language;
+  }, [language, dir]);
 
   return (
-    <html lang={i18n.language} dir={i18n.dir()}>
+    <html lang={language} dir={dir}>
       <head>
         <HeadContent />
       </head>
@@ -135,14 +139,16 @@ function RootComponent() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <StoreProvider>
-        {loading && <PizzaLoader />}
-        <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-          <Outlet />
-        </div>
-        <Toaster position="top-center" />
-      </StoreProvider>
-    </QueryClientProvider>
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          {loading && <PizzaLoader />}
+          <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+            <Outlet />
+          </div>
+          <Toaster position="top-center" />
+        </StoreProvider>
+      </QueryClientProvider>
+    </I18nextProvider>
   );
 }
