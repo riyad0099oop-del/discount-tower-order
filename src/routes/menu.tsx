@@ -111,8 +111,8 @@ function MenuPage() {
             <section key={c.id} id={c.id} className="scroll-mt-32">
               <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
                 <h2 className="text-2xl sm:text-3xl font-black text-foreground">{localize(c.name, lang)}</h2>
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-bold text-primary border border-primary/20 shadow-sm">
-                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <div className="inline-flex items-start sm:items-center gap-2 rounded-2xl bg-primary/10 px-4 py-2.5 text-sm font-bold text-primary border border-primary/20 shadow-sm text-start">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0 mt-1 sm:mt-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
                   </span>
