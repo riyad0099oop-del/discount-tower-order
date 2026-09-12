@@ -87,6 +87,13 @@ function Index() {
             <p className="mt-3 lg:mt-5 text-[1.05rem] md:text-[1.2rem] leading-[1.6] text-[#7a6f65] max-w-[320px] lg:max-w-[360px] mx-auto lg:mx-0 font-medium animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150">
               {t('hero_desc')}
             </p>
+            <div className="mt-6 inline-flex items-center gap-2 self-center lg:self-start rounded-full bg-primary/10 px-5 py-2.5 text-sm lg:text-base font-bold text-primary animate-in fade-in slide-in-from-bottom-7 duration-1000 delay-200 border border-primary/20 shadow-sm">
+              <span className="relative flex h-3 w-3 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+              </span>
+              {t('american_dough')}
+            </div>
             <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 lg:gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
               <Button
                 asChild

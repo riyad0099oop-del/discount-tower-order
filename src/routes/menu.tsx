@@ -109,7 +109,16 @@ function MenuPage() {
             if (!items.length) return null;
           return (
             <section key={c.id} id={c.id} className="scroll-mt-32">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-black text-foreground">{localize(c.name, lang)}</h2>
+              <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+                <h2 className="text-2xl sm:text-3xl font-black text-foreground">{localize(c.name, lang)}</h2>
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-bold text-primary border border-primary/20 shadow-sm">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                  </span>
+                  {t('american_dough')}
+                </div>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                 {items.map((p, idx) => {
                   const isFeatured =

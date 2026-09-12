@@ -66,6 +66,7 @@ const resources = {
       // Settings/Misc
       'best_seller': 'الأكثر طلبًا',
       'sar': 'ر.س',
+      'american_dough': 'ملاحظة: العجينة والتحضير بالطريقة الأمريكية الأصيلة 🇺🇸',
     }
   },
   en: {
@@ -131,6 +132,7 @@ const resources = {
       // Settings/Misc
       'best_seller': 'Best Seller',
       'sar': 'SAR',
+      'american_dough': 'Note: Authentic American dough and preparation 🇺🇸',
     }
   }
 };
