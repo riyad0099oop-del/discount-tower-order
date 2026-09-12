@@ -26,7 +26,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-[#F4EBE1]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-20 sm:h-24 max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button
@@ -60,7 +60,7 @@ export function Header() {
           <img
             src={logoFull}
             alt="برج التخفيضات"
-            className="h-12 w-auto sm:h-14 mix-blend-multiply"
+            className="h-16 w-auto sm:h-20 lg:h-24 mix-blend-multiply"
           />
         </Link>
 
