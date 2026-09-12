@@ -61,18 +61,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setProducts(defaultProducts); // Temporarily ignoring localStorage so code changes show up immediately
-    setCategories(load("dt_categories", defaultCategories));
+    setCategories(defaultCategories); // Ignoring localStorage because admin was removed and it caches old data
     setSettings(load("dt_settings", defaultSettings));
     setCart(load<CartItem[]>("dt_cart", []));
     setReady(true);
   }, []);
 
-  useEffect(() => {
-    if (ready) localStorage.setItem("dt_products", JSON.stringify(products));
-  }, [products, ready]);
-  useEffect(() => {
-    if (ready) localStorage.setItem("dt_categories", JSON.stringify(categories));
-  }, [categories, ready]);
   useEffect(() => {
     if (ready) localStorage.setItem("dt_settings", JSON.stringify(settings));
   }, [settings, ready]);
