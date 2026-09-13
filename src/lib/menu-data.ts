@@ -292,8 +292,8 @@ export type Settings = {
 };
 
 export const defaultSettings: Settings = {
-  whatsapp: "966548392988",
-  phone: "0548392988",
+  whatsapp: "966545015408",
+  phone: "0545015408",
   instagram: "",
   hours: "",
   branches: [],

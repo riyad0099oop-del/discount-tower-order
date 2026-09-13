@@ -103,7 +103,7 @@ function ContactPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 {/* WhatsApp - Primary */}
                 <a
-                  href={`https://wa.me/966548392988`}
+                  href={`https://wa.me/966545015408`}
                   target="_blank"
                   rel="noreferrer"
                   className="group col-span-1 sm:col-span-2 flex items-center gap-4 rounded-2xl bg-[#25D366]/10 p-5 transition-colors hover:bg-[#25D366]/20"
@@ -114,14 +114,14 @@ function ContactPage() {
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-[#1DA851]">واتساب</p>
                     <p className="truncate text-lg font-bold text-foreground" dir="ltr">
-                      054 839 2988
+                      054 501 5408
                     </p>
                   </div>
                 </a>
 
                 {/* Phone - Secondary */}
                 <a
-                  href={`tel:0548392988`}
+                  href={`tel:0545015408`}
                   className="group col-span-1 flex items-center gap-4 rounded-2xl border border-border/50 bg-white p-4 transition-shadow hover:shadow-soft"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -130,7 +130,7 @@ function ContactPage() {
                   <div className="min-w-0">
                     <p className="text-xs font-medium text-muted-foreground">رقم التواصل</p>
                     <p className="truncate font-bold text-foreground" dir="ltr">
-                      054 839 2988
+                      054 501 5408
                     </p>
                   </div>
                 </a>

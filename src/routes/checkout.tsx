@@ -77,7 +77,7 @@ function CheckoutPage() {
       lines.push("", "ملاحظة: رسوم التوصيل محسوبة على العميل.");
     }
 
-    const num = "966548392988";
+    const num = "966545015408";
     window.open(`https://wa.me/${num}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
     clearCart();
     toast.success("تم تجهيز رسالة الطلب على واتساب");
